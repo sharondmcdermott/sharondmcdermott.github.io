@@ -77,11 +77,12 @@
             border-radius: 5px;
         }
 
-        /* Image Links */
-        section img {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
+        /* Circular Image Styling */
+        .circular-image {
+            width: 200px; /* You can adjust the size as needed */
+            height: 200px;
+            object-fit: cover; /* Ensures the image is resized correctly inside the circular shape */
+            border-radius: 50%; /* Makes the image circular */
             cursor: pointer;
             margin-top: 20px;
         }
@@ -118,7 +119,7 @@
             <li>Machine Learning</li>
             <li>Database Management</li>
         </ul>
-        <img src="images/IMG_20210104_120612.jpg" alt="About Me Image" onclick="window.location.href='about.html';">
+        <img src="images/IMG_20210104_120612.jpg" alt="About Me Image" class="circular-image" onclick="window.location.href='about.html';">
     </section>
     
     <section id="projects">
@@ -128,12 +129,12 @@
     
     <section id="experience">
         <h2>Experience</h2>
-        <img src="images/Experience-teaser.png" alt="Experience Image" onclick="window.location.href='experience.html';">
+        <img src="images/Experience-teaser.png" alt="Experience Image" class="circular-image" onclick="window.location.href='experience.html';">
     </section>
     
     <section id="certifications">
         <h2>Certifications & Accomplishments</h2>
-        <img src="images/bg.png" alt="Certification Image" onclick="window.location.href='certifications.html';">
+        <img src="images/bg.png" alt="Certification Image" class="circular-image" onclick="window.location.href='certifications.html';">
     </section>
 
     <footer>
@@ -141,3 +142,4 @@
     </footer>
 </body>
 </html>
+
