@@ -1,184 +1,174 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Sharon McDermott, Researcher, Data Scientist, and Analyst.">
-    <title>Sharon McDermott's Portfolio</title>
-    <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<!DOCTYPE HTML>
+<!--
+	Astral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Astral by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            line-height: 1.6;
-        }
+		<!-- Wrapper-->
+			<div id="wrapper">
 
-        /* Header and Navigation */
-        header {
-            text-align: center;
-            padding: 20px;
-        }
+				<!-- Nav -->
+					<nav id="nav">
+						<a href="#" class="icon solid fa-home"><span>Home</span></a>
+                        <a href="#aboutme" class="icon solid fa-female"><span>About Me</span></a>
+                        <a href="#experience" class="icon solid fa-briefcase"><span>Experience</span></a>
+						<a href="#portfolio" class="icon solid fa-folder"><span>Portfolio</span></a>
+					</nav>
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
+				<!-- Main -->
+					<div id="main">
 
-        nav ul li {
-            margin: 0 15px;
-        }
+						<!-- Me -->
+							<article id="home" class="panel intro">
+								<header>
+									<h1>Hello World! I'm Sharon McDemrott</h1>
+									<p>Data-Driven Solutions Architect • Predictive Analytics • Data Storyteller</p>
+                                     <p>Contact me at: <a href="https://www.linkedin.com/in/sharon-mcdermott-a458222bb/" target="_blank">@SharonDMcDermott</a></p>
+                                    <ul class="skills">
+                                        <li>Data Science</li>
+                                        <li>Database Analysis</li>
+                                        <li>Machine Learning</li>
+                                        <li>Public Health</li>
+                                     </ul>
+								</header>
+								<a href="#aboutme" class="jumplink pic">
+									<span class="arrow icon solid fa-chevron-right"><span>See About Me</span></span>
+									<img src="Portrait1.png" alt="" />
+								</a>
+							</article>
 
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-        }
+                        <!-- About Me -->
+							<article id="aboutme" class="panel">
+								<header>
+									<h2>About Me</h2>
+								</header>
+								<p>
+								    Welcome to my portfolio! As a Data Science graduate with expertise in data science, research, and data management,
+                                    I aim to apply my skills to improve program efficiency and operational effectiveness.
+                                    My focus is on enhancing data security and supporting data-driven decision-making through IT systems management within federal agencies.
+                                    <br>
+                                    Inspired by Carl Sagan's reflection on the 'Pale Blue Dot' photograph, I am reminded of the profound impact and responsibility we hold
+                                    as individuals. Sagan's message underscores the potential for data science to leverage vast amounts of information and enact meaningful,
+                                    positive changes in our global community. By applying data science principles, I aspire to make significant contributions that improve
+                                    lives and fostering a sense of unity among the people of this 'pale blue dot': our home.
+								</p>
 
-        .hero h1 {
-            font-size: 48px;
-            margin-top: 20px;
-            margin-bottom: 40px;
-        }
+                         <!-- Experience -->
+							<article id="experience" class="panel">
+								<header>
+									<h2>My Experience</h2>
+								</header>
+                                <img src="experience.png" alt="Experience Image" style="width: 150px; height: auto; border-radius: 0;" onclick="window.location.href='experience.html';">
+                                </section>
+                                <div style="text-align: left; max-width: 800px; margin: auto;">
+                                <p>
+                                    With my background in data science and experience in research coordination, I have developed a strong skill set 
+                                    in managing and analyzing complex datasets. At Cleveland Clinic and Retina Consultants of Nevada,
+                                    I collaborated with principal investigators and sponsors, ensuring compliance with research protocols
+                                    while handling sensitive clinical data. I was responsible for patient screening, data collection, and specimen
+                                    processing, which strengthened my ability to manage large data systems while maintaining data accuracy and
+                                    integrity. This hands-on experience with healthcare data has honed my skills in research, data management,
+                                    and drawing insights from clinical data, all essential for driving data-informed decisions.
+                                    <br>
+                                    Furthermore, my role as a Research Assistant at National University has been instrumental in supporting
+                                    academics with grant pursuits and grant writing. This experience has provided me with a unique perspective
+                                    on the integration of data analytics to enhance grant proposals, ensuring that research projects are
+                                    well-supported by data-driven evidence and sound methodologies.
+                                    <br>
+                                    Moreover, my role as a Forensic Specialist at the Nevada Department of Health and Human Services reinforced
+                                    my ability to apply data analytics in regulatory environments. This experience, paired with my technical
+                                    skills and commitment to improving program efficiency, positions me to contribute effectively in high-impact
+                                    roles such as a program analyst or data scientist within federal agencies. By leveraging data to inform
+                                    policy and operational decisions, I am well-equipped to support federal initiatives that rely on
+                                    data-driven insights for success.
+                                    <br>
+                                    In addition to my practical experience, my educational focus on Database Analytics within my Master's in Data
+                                    Science has equipped me with technical expertise in SQL, Python, and machine learning. I’ve applied these 
+                                    skills in various data-driven projects, using statistical techniques to analyze both continuous and categorical 
+                                    data. My proficiency in designing databases and employing machine learning algorithms allows me to build
+                                    and refine predictive models for optimizing decision-making processes. This combination of practical
+                                    experience and technical knowledge enables me to tackle complex data challenges and develop solutions
+                                    grounded in statistical rigor and advanced analytics.
+                                    </p>
 
-        /* Section Styling */
-        section {
-            padding: 50px 20px;
-            text-align: center;
-        }
+						<!-- Portfolio -->
+							<article id="portfolio" class="panel">
+								<header>
+									<h2>Portfolio</h2>
+								</header>
+								<p>
+									Phasellus enim sapien, blandit ullamcorper elementum eu, condimentum eu elit.
+									Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+									luctus elit eget interdum.
+								</p>
+								<section>
+									<div class="row">
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic01.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic02.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic03.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic04.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic05.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic06.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic07.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic08.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic09.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic10.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic11.jpg" alt=""></a>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#" class="image fit"><img src="images/pic12.jpg" alt=""></a>
+										</div>
+									</div>
+								</section>
+							</article>
 
-        section h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
 
-        .skills {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
+				<!-- Footer -->
+					<div id="footer">
+						<ul class="copyright">
+							<li>&copy; Untitled.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</div>
 
-        .skills li {
-            background-color: #333;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
+			</div>
 
-        /* Circular Image Styling */
-        .circular-image {
-            width: 200px; /* You can adjust the size as needed */
-            height: 200px;
-            object-fit: cover; /* Ensures the image is resized correctly inside the circular shape */
-            border-radius: 50%; /* Makes the image circular */
-            cursor: pointer;
-            margin-top: 20px;
-        }
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
-        /* Footer Styling */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #111;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-            </ul>
-        </nav>
-        <div class="hero">
-            <h1>Hello! I'm Sharon McDermott —</h1>
-            <h2>Data-Driven Solutions Architect • Predictive Analytics • Data Storyteller</h2> 
-            <h1>↓</h1>
-        </div>
-         <img src="Portrait1.png" alt="About Me Image" class="circular-image" onclick="window.location.href='about.html';">
-    </section>
-    </header>
-
-    <section id="about">
-         <h2>About Me <span style="color: #ADD8E6;">•</span></h2>
-        <p>Welcome to my portfolio! As a Data Science graduate with expertise in data science, research, and data management,</p> 
-        <p>I aim to apply my skills to improve program efficiency and operational effectiveness.</p>
-        <p>My focus is on enhancing data security and supporting data-driven decision-making through IT systems management within federal agencies.</p>
-        <br>
-        <p>Inspired by Carl Sagan's reflection on the 'Pale Blue Dot' photograph, I am reminded of the profound impact and responsibility we hold</p> 
-        <p>as individuals. Sagan's message underscores the potential for data science to leverage vast amounts of information and enact meaningful,</p> 
-        <p>positive changes in our global community. By applying data science principles, I aspire to make significant contributions that improve</p> 
-        <p>lives and fostering a sense of unity among the people of this 'pale blue dot': our home.</p>
-        <ul class="skills">
-            <li>Data Science</li>
-            <li>Database Analysis</li>
-            <li>Machine Learning</li>
-            <li>Public Health</li>
-        </ul>
-    
-    <section id="projects">
-        <h2>Projects</h2>
-        <img src="project.png" alt="Project Image" style="width: 150px; height: auto; border-radius: 0;" onclick="window.location.href='project.html';">
-    </section>
-
-<section id="experience">
-    <h2>Experience</h2>
-<img src="experience.png" alt="Experience Image" style="width: 150px; height: auto; border-radius: 0;" onclick="window.location.href='experience.html';">
-</section>
-<div style="text-align: left; max-width: 800px; margin: auto;">
-    <p>With my background in data science and experience in research coordination, I have developed a strong skill set 
-    <p>in managing and analyzing complex datasets. At Cleveland Clinic and Retina Consultants of Nevada, </p> 
-    <p>I collaborated with principal investigators and sponsors, ensuring compliance with research protocols</p> 
-    <p>while handling sensitive clinical data. I was responsible for patient screening, data collection, and specimen</p> 
-    <p>processing, which strengthened my ability to manage large data systems while maintaining data accuracy and</p> 
-    <p>integrity. This hands-on experience with healthcare data has honed my skills in research, data management,</p>
-    <p>and drawing insights from clinical data, all essential for driving data-informed decisions.</p>
-    <br>
-    <p>Furthermore, my role as a Research Assistant at National University has been instrumental in supporting</p>
-    <p>academics with grant pursuits and grant writing. This experience has provided me with a unique perspective</p>
-    <p>on the integration of data analytics to enhance grant proposals, ensuring that research projects are</p> 
-    <p>well-supported by data-driven evidence and sound methodologies.</p>
-    <br>
-    <p>Moreover, my role as a Forensic Specialist at the Nevada Department of Health and Human Services reinforced</p> 
-    <p>my ability to apply data analytics in regulatory environments. This experience, paired with my technical</p>
-    <p>skills and commitment to improving program efficiency, positions me to contribute effectively in high-impact</p> 
-    <p>roles such as a program analyst or data scientist within federal agencies. By leveraging data to inform</p>
-    <p>policy and operational decisions, I am well-equipped to support federal initiatives that rely on</p>
-    <p>data-driven insights for success.</p>
-    <br>
-    <p>In addition to my practical experience, my educational focus on Database Analytics within my Master's in Data</p> 
-    <p>Science has equipped me with technical expertise in SQL, Python, and machine learning. I’ve applied these</p> 
-    <p>skills in various data-driven projects, using statistical techniques to analyze both continuous and categorical 
-    <p>data. My proficiency in designing databases and employing machine learning algorithms allows me to build</p> 
-    <p>and refine predictive models for optimizing decision-making processes. This combination of practical</p> 
-    <p>experience and technical knowledge enables me to tackle complex data challenges and develop solutions</p> 
-    <p>grounded in statistical rigor and advanced analytics.</p>
-    <br>
-    
-    <section id="certifications">
-        <h2>Certifications & Accomplishments</h2>
-        <p>Dean’s List Award - 2024</p>
-        <p>Member of Omega Nu Lambda - 2024</p>
-        <img src="accomplishments.png" alt="Certification Image" style="width: 150px; height: auto; border-radius: 0;" onclick="window.location.href='certifications.html';">
-
-    <footer>
-        <p>Contact me at: <a href="https://www.linkedin.com/in/sharon-mcdermott-a458222bb/" target="_blank">LinkedIn - SharonDMcDermott</a></p>
-    </footer>
-</body>
+	</body>
 </html>
-
