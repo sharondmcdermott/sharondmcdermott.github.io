@@ -9,44 +9,87 @@
     <title>Sharon McDermott — Portfolio</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <!-- Theme CSS -->
     <link rel="stylesheet" href="assets/css/main.css" />
 
-    <!-- Small overrides for your customizations -->
+    <!-- Fonts: Lato (site) + Kalam (handwriting for About) -->
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Your overrides -->
     <style>
-      /* 1) Stack first/last name so it doesn't collide with the avatar */
-      #logo #title .first,
-      #logo #title .last { display:block; line-height:1.05; }
+      :root { --accent: #4a6d57; }
+
+      /* Global font: Lato everywhere */
+      body, input, textarea, select, button {
+        font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+
+      /* About section uses handwriting font (easy to read) */
+      #about .container p,
+      #about .container h2 {
+        font-family: "Kalam", "Lato", sans-serif;
+      }
+
+      /* 1) Stack first/last name cleanly */
+      #logo #title .first, #logo #title .last { display:block; line-height:1.05; }
       #logo #title { margin-top:.3rem; }
 
-      /* 2) Keep avatar square (no warping), crop nicely */
+      /* 2) Avatar: keep square, remove red halo */
+      #logo .image.avatar48 {
+        background: transparent !important;   /* kill theme’s colored circle */
+        border: none !important;
+        box-shadow: none !important;
+      }
       #logo .image.avatar48 img {
         width: 100%;
         height: 100%;
         aspect-ratio: 1 / 1;
         object-fit: cover;
-        border-radius: 50%;
+        border-radius: 8px;                   /* square with slight rounding; use 0 for hard square */
       }
 
-      /* 4) About Me paragraphs left-aligned */
-      #about .container p { text-align:left; }
+      /* 3) Nav icon + label color when active/hovered */
+      #nav ul li a span:before { transition: color .2s ease; }
+      #nav ul li a:hover span:before,
+      #nav ul li a.active span:before { color: var(--accent) !important; }
+      #nav ul li a:hover span,
+      #nav ul li a.active span { color: var(--accent) !important; }
 
-      /* 5) Contact copy left-aligned (slightly narrower for readability) */
-      #contact .container p { text-align:left; max-width: 60ch; margin: 0 0 1.5rem 0; }
+      /* Also tint the social icon hover */
+      .icons a:hover { color: var(--accent) !important; }
 
-      /* 3) Simple modal styles for project details */
+      /* 4) About Me: left-align + tighter paragraph spacing */
+      #about .container p {
+        text-align: left;
+        margin: 0 0 0.9rem 0;  /* tighten space between paragraphs */
+        line-height: 1.75;     /* comfortable, not airy */
+        font-size: 1.05rem;
+      }
+
+      /* 5) Contact: left-aligned text but centered block (not stuck to left edge) */
+      #contact .container p {
+        text-align: left;
+        max-width: 60ch;
+        margin: 0 auto 1.2rem auto; /* center the block, keep left-aligned text */
+      }
+
+      /* Modal styles for project details */
       .modal { position:fixed; inset:0; display:none; }
       .modal.is-open { display:block; }
       .modal__backdrop { position:absolute; inset:0; background:rgba(0,0,0,.55); }
       .modal__dialog {
         position:relative; max-width:720px; margin:6vh auto; background:#fff;
         padding:1.5rem; border-radius:12px; box-shadow:0 10px 50px rgba(0,0,0,.3);
+        color:#2b2b2b;
       }
       .modal__close {
         position:absolute; top:.5rem; right:.75rem; font-size:1.75rem;
         line-height:1; background:none; border:none; cursor:pointer;
       }
       #modal-image { width:100%; height:auto; margin:.5rem 0 1rem; border-radius:8px; }
-      #modal-link { display:inline-block; margin-top:.5rem; }
+      #modal-link { display:inline-block; margin-top:.5rem; color: var(--accent); }
+      #modal-link:hover { text-decoration: underline; }
     </style>
   </head>
   <body class="is-preload">
@@ -105,11 +148,7 @@
       <!-- Portfolio -->
       <section id="portfolio" class="two">
         <div class="container">
-
-          <header>
-            <h2>Portfolio</h2>
-          </header>
-
+          <header><h2>Portfolio</h2></header>
           <p>Selected projects. Click a tile to see a quick summary.</p>
 
           <div class="row">
@@ -153,18 +192,13 @@
               </article>
             </div>
           </div>
-
         </div>
       </section>
 
       <!-- About Me -->
       <section id="about" class="three">
         <div class="container">
-
-          <header>
-            <h2>About Me</h2>
-          </header>
-
+          <header><h2>About Me</h2></header>
           <a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
 
           <p>Hello! I'm Sharon McDermott, born and raised in Los Angeles—specifically, the intersection of Sepulveda and Venice, where the world began and ended outside a pink apartment building and its stubborn patch of grass.</p>
@@ -176,18 +210,15 @@
           <p>Psychology and philosophy slipped into my life like they'd always belonged there. Eventually, I pursued a B.S. in Psychology at UNLV, then became a research coordinator and realized I loved turning curiosity into data and data into meaning. That curiosity pushed me to earn an M.S. in Data Science—I didn't just want to ask questions; I wanted to find answers in the details.</p>
 
           <p>Now, I'm drawn to a career where empathy meets inquiry—where storytelling meets structure.</p>
-
         </div>
       </section>
 
       <!-- Contact -->
       <section id="contact" class="four">
         <div class="container">
+          <header><h2>Contact</h2></header>
 
-          <header>
-            <h2>Contact</h2>
-          </header>
-
+          <!-- Left-aligned text, centered block -->
           <p>Contact me if you want someone who can dive into the chaos of numbers and come back with a story that actually means something—that’s my sweet spot. I’ll bring the data, the curiosity, and the kind of clarity that makes the insight impossible to forget.</p>
 
           <form method="post" action="#">
@@ -202,10 +233,8 @@
               </div>
             </div>
           </form>
-
         </div>
       </section>
-
     </div>
 
     <!-- Footer -->
@@ -215,7 +244,7 @@
       </ul>
     </div>
 
-    <!-- Modal (for portfolio project details) -->
+    <!-- Modal -->
     <div id="project-modal" class="modal" aria-hidden="true">
       <div class="modal__backdrop" data-close></div>
       <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -238,38 +267,17 @@
 
     <!-- Modal logic -->
     <script>
-      // Map each tile to its modal content. Update with your real project info/links.
       const PROJECTS = {
-        p1: {
-          title: "Ipsum Feugiat",
-          img: "images/pic02.jpg",
-          desc: "Short description of the project: goal, methods (e.g., SQL + Tableau), and one measurable result.",
-          link: "#"
-        },
-        p2: {
-          title: "Project 1",
-          img: "images/pic03.jpg",
-          desc: "What problem you solved, how you approached it, and the decision your analysis enabled.",
-          link: "#"
-        },
-        p3: {
-          title: "Project 2",
-          img: "images/pic04.jpg",
-          desc: "A concise insight-driven summary—perfect for recruiters skimming.",
-          link: "#"
-        },
-        p4: {
-          title: "Project 3",
-          img: "images/pic05.jpg",
-          desc: "Mention tools (Python, R, SQL) and the impact on marketing/operations.",
-          link: "#"
-        },
-        p5: {
-          title: "Gallery Item",
-          img: "images/pic06.jpg",
-          desc: "Swap this with your real project details.",
-          link: "#"
-        }
+        p1: { title:"Ipsum Feugiat", img:"images/pic02.jpg",
+              desc:"Short description of the project: goal, methods (e.g., SQL + Tableau), and one measurable result.", link:"#"},
+        p2: { title:"Project 1", img:"images/pic03.jpg",
+              desc:"What problem you solved, how you approached it, and the decision your analysis enabled.", link:"#"},
+        p3: { title:"Project 2", img:"images/pic04.jpg",
+              desc:"A concise insight-driven summary—perfect for recruiters skimming.", link:"#"},
+        p4: { title:"Project 3", img:"images/pic05.jpg",
+              desc:"Mention tools (Python, R, SQL) and the impact on marketing/operations.", link:"#"},
+        p5: { title:"Gallery Item", img:"images/pic06.jpg",
+              desc:"Swap this with your real project details.", link:"#"}
       };
 
       const modal = document.getElementById('project-modal');
@@ -293,19 +301,11 @@
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
       }
-
       document.querySelectorAll('.project-link').forEach(a => {
-        a.addEventListener('click', e => {
-          e.preventDefault();
-          openModal(a.dataset.project);
-        });
+        a.addEventListener('click', e => { e.preventDefault(); openModal(a.dataset.project); });
       });
-      modal.addEventListener('click', e => {
-        if (e.target.hasAttribute('data-close')) closeModal();
-      });
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') closeModal();
-      });
+      modal.addEventListener('click', e => { if (e.target.hasAttribute('data-close')) closeModal(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
     </script>
   </body>
 </html>
