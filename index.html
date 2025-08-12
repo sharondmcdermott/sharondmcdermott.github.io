@@ -16,7 +16,7 @@
     <!-- Fonts: Lato (site) + Kalam (handwriting for About) -->
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-    <!-- Your overrides -->
+    <!-- Custom overrides -->
     <style>
       :root { --accent: #4a6d57; }
 
@@ -25,19 +25,19 @@
         font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
       }
 
-      /* About section uses handwriting font (easy to read) */
+      /* About section uses handwriting font (readable) */
       #about .container p,
       #about .container h2 {
         font-family: "Kalam", "Lato", sans-serif;
       }
 
-      /* 1) Stack first/last name cleanly */
+      /* Stack first/last name cleanly */
       #logo #title .first, #logo #title .last { display:block; line-height:1.05; }
       #logo #title { margin-top:.3rem; }
 
-      /* 2) Avatar: keep square, remove red halo */
+      /* Avatar: keep square, remove halo */
       #logo .image.avatar48 {
-        background: transparent !important;   /* kill theme’s colored circle */
+        background: transparent !important;
         border: none !important;
         box-shadow: none !important;
       }
@@ -46,50 +46,64 @@
         height: 100%;
         aspect-ratio: 1 / 1;
         object-fit: cover;
-        border-radius: 8px;                   /* square with slight rounding; use 0 for hard square */
+        border-radius: 8px; /* set to 0 for perfectly sharp corners */
       }
 
-      /* 3) Nav icon + label color when active/hovered */
+      /* Nav icon + label color when active/hovered */
       #nav ul li a span:before { transition: color .2s ease; }
       #nav ul li a:hover span:before,
       #nav ul li a.active span:before { color: var(--accent) !important; }
       #nav ul li a:hover span,
       #nav ul li a.active span { color: var(--accent) !important; }
 
-      /* Also tint the social icon hover */
+      /* Social icons hover tint */
       .icons a:hover { color: var(--accent) !important; }
 
-      /* 4) About Me: left-align + tighter paragraph spacing */
+      /* About Me: left-align + tighter spacing */
       #about .container p {
         text-align: left;
-        margin: 0 0 0.9rem 0;  /* tighten space between paragraphs */
-        line-height: 1.75;     /* comfortable, not airy */
+        margin: 0 0 0.9rem 0;
+        line-height: 1.75;
         font-size: 1.05rem;
       }
 
-      /* 5) Contact: left-aligned text but centered block (not stuck to left edge) */
+      /* Contact: left-aligned text but centered block */
       #contact .container p {
         text-align: left;
         max-width: 60ch;
-        margin: 0 auto 1.2rem auto; /* center the block, keep left-aligned text */
+        margin: 0 auto 1.2rem auto;
       }
 
-      /* Modal styles for project details */
-      .modal { position:fixed; inset:0; display:none; }
-      .modal.is-open { display:block; }
-      .modal__backdrop { position:absolute; inset:0; background:rgba(0,0,0,.55); }
+      /* Tag chips under project titles */
+      .tags {
+        list-style: none; padding: 0; margin: .35rem 0 0 0;
+        display: flex; flex-wrap: wrap; gap: .4rem;
+      }
+      .tags li {
+        font-size: .75rem; padding: .25rem .5rem;
+        border: 1px solid rgba(74,109,87,.35);
+        border-radius: 999px; color: #4a6d57; background: rgba(74,109,87,.06);
+      }
+
+      /* Modal (case-study) */
+      .modal { position: fixed; inset: 0; display: none; }
+      .modal.is-open { display: block; }
+      .modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.55); }
       .modal__dialog {
-        position:relative; max-width:720px; margin:6vh auto; background:#fff;
-        padding:1.5rem; border-radius:12px; box-shadow:0 10px 50px rgba(0,0,0,.3);
-        color:#2b2b2b;
+        position: relative; max-width: 820px; margin: 6vh auto; background: #fff;
+        padding: 1.5rem 1.75rem; border-radius: 12px; box-shadow: 0 10px 50px rgba(0,0,0,.3);
+        color: #2b2b2b; max-height: 88vh; overflow: auto;
       }
       .modal__close {
-        position:absolute; top:.5rem; right:.75rem; font-size:1.75rem;
-        line-height:1; background:none; border:none; cursor:pointer;
+        position: absolute; top: .5rem; right: .75rem; font-size: 1.75rem;
+        line-height: 1; background: none; border: none; cursor: pointer;
       }
-      #modal-image { width:100%; height:auto; margin:.5rem 0 1rem; border-radius:8px; }
-      #modal-link { display:inline-block; margin-top:.5rem; color: var(--accent); }
-      #modal-link:hover { text-decoration: underline; }
+      .modal__sections h4 {
+        margin: 1rem 0 .35rem; color: var(--accent);
+      }
+      .modal__sections p {
+        margin: .2rem 0 .8rem; line-height: 1.7;
+      }
     </style>
   </head>
   <body class="is-preload">
@@ -149,7 +163,7 @@
       <section id="portfolio" class="two">
         <div class="container">
           <header><h2>Portfolio</h2></header>
-          <p>Selected projects. Click a tile to see a quick summary.</p>
+          <p>Selected projects. Click a tile to see a quick overview with methods and outcomes.</p>
 
           <div class="row">
             <div class="col-4 col-12-mobile">
@@ -157,14 +171,24 @@
                 <a href="#" class="image fit project-link" data-project="p1">
                   <img src="images/pic02.jpg" alt="Ipsum Feugiat preview" />
                 </a>
-                <header><h3>Ipsum Feugiat</h3></header>
+                <header>
+                  <h3>Ipsum Feugiat</h3>
+                  <ul class="tags">
+                    <li>Qualitative</li><li>Usability</li><li>R</li>
+                  </ul>
+                </header>
               </article>
 
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p2">
                   <img src="images/pic03.jpg" alt="Project 1 preview" />
                 </a>
-                <header><h3>Project 1</h3></header>
+                <header>
+                  <h3>Project 1</h3>
+                  <ul class="tags">
+                    <li>SQL</li><li>Tableau</li><li>Segmentation</li>
+                  </ul>
+                </header>
               </article>
             </div>
 
@@ -173,14 +197,24 @@
                 <a href="#" class="image fit project-link" data-project="p3">
                   <img src="images/pic04.jpg" alt="Project 2 preview" />
                 </a>
-                <header><h3>Project 2</h3></header>
+                <header>
+                  <h3>Project 2</h3>
+                  <ul class="tags">
+                    <li>A/B Testing</li><li>Python</li><li>Marketing</li>
+                  </ul>
+                </header>
               </article>
 
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p4">
                   <img src="images/pic05.jpg" alt="Project 3 preview" />
                 </a>
-                <header><h3>Project 3</h3></header>
+                <header>
+                  <h3>Project 3</h3>
+                  <ul class="tags">
+                    <li>Survey</li><li>Insights</li><li>Visualization</li>
+                  </ul>
+                </header>
               </article>
             </div>
 
@@ -189,6 +223,12 @@
                 <a href="#" class="image fit project-link" data-project="p5">
                   <img src="images/pic06.jpg" alt="Gallery item preview" />
                 </a>
+                <header>
+                  <h3>Gallery Item</h3>
+                  <ul class="tags">
+                    <li>Exploratory</li><li>EDA</li>
+                  </ul>
+                </header>
               </article>
             </div>
           </div>
@@ -218,7 +258,6 @@
         <div class="container">
           <header><h2>Contact</h2></header>
 
-          <!-- Left-aligned text, centered block -->
           <p>Contact me if you want someone who can dive into the chaos of numbers and come back with a story that actually means something—that’s my sweet spot. I’ll bring the data, the curiosity, and the kind of clarity that makes the insight impossible to forget.</p>
 
           <form method="post" action="#">
@@ -244,15 +283,29 @@
       </ul>
     </div>
 
-    <!-- Modal -->
+    <!-- Case-study Modal (no image/link) -->
     <div id="project-modal" class="modal" aria-hidden="true">
       <div class="modal__backdrop" data-close></div>
       <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <button class="modal__close" aria-label="Close" data-close>&times;</button>
         <h3 id="modal-title"></h3>
-        <img id="modal-image" alt="" />
-        <p id="modal-desc"></p>
-        <a id="modal-link" target="_blank" rel="noopener noreferrer">View project →</a>
+
+        <div class="modal__sections">
+          <h4>Project Overview</h4>
+          <p id="sec-overview"></p>
+
+          <h4>What We Did</h4>
+          <p id="sec-did"></p>
+
+          <h4>Outcome</h4>
+          <p id="sec-outcome"></p>
+
+          <h4>Limitations</h4>
+          <p id="sec-limitations"></p>
+
+          <h4>Reflection</h4>
+          <p id="sec-reflection"></p>
+        </div>
       </div>
     </div>
 
@@ -265,46 +318,90 @@
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <!-- Modal logic -->
+    <!-- Modal logic + project data -->
     <script>
+      // Structured content per project (fill with your real text)
       const PROJECTS = {
-        p1: { title:"Ipsum Feugiat", img:"images/pic02.jpg",
-              desc:"Short description of the project: goal, methods (e.g., SQL + Tableau), and one measurable result.", link:"#"},
-        p2: { title:"Project 1", img:"images/pic03.jpg",
-              desc:"What problem you solved, how you approached it, and the decision your analysis enabled.", link:"#"},
-        p3: { title:"Project 2", img:"images/pic04.jpg",
-              desc:"A concise insight-driven summary—perfect for recruiters skimming.", link:"#"},
-        p4: { title:"Project 3", img:"images/pic05.jpg",
-              desc:"Mention tools (Python, R, SQL) and the impact on marketing/operations.", link:"#"},
-        p5: { title:"Gallery Item", img:"images/pic06.jpg",
-              desc:"Swap this with your real project details.", link:"#"}
+        p1: {
+          title: "Ipsum Feugiat",
+          overview: "Context, problem, and who it was for. One or two sentences.",
+          did: "Methods and tools (e.g., semi-structured interviews, survey in Qualtrics, analysis in R).",
+          outcome: "Key insight(s) and measurable impact, if applicable.",
+          limitations: "Sampling, time, data quality—whatever constrained the work.",
+          reflection: "What you’d do next or learned for future studies."
+        },
+        p2: {
+          title: "Project 1",
+          overview: "Short setup of the challenge and stakeholders.",
+          did: "Approach and techniques (SQL, Tableau dashboards, segmentation).",
+          outcome: "Decision enabled or KPI movement.",
+          limitations: "Trade-offs, assumptions, or known gaps.",
+          reflection: "What surprised you, or a next iteration."
+        },
+        p3: {
+          title: "Project 2",
+          overview: "Add your real details here.",
+          did: "Methods/tools.",
+          outcome: "Result.",
+          limitations: "Limitations.",
+          reflection: "Reflection."
+        },
+        p4: {
+          title: "Project 3",
+          overview: "Add your real details here.",
+          did: "Methods/tools.",
+          outcome: "Result.",
+          limitations: "Limitations.",
+          reflection: "Reflection."
+        },
+        p5: {
+          title: "Gallery Item",
+          overview: "Add your real details here.",
+          did: "Methods/tools.",
+          outcome: "Result.",
+          limitations: "Limitations.",
+          reflection: "Reflection."
+        }
       };
 
       const modal = document.getElementById('project-modal');
       const titleEl = document.getElementById('modal-title');
-      const imgEl   = document.getElementById('modal-image');
-      const descEl  = document.getElementById('modal-desc');
-      const linkEl  = document.getElementById('modal-link');
+      const secOverview = document.getElementById('sec-overview');
+      const secDid = document.getElementById('sec-did');
+      const secOutcome = document.getElementById('sec-outcome');
+      const secLimitations = document.getElementById('sec-limitations');
+      const secReflection = document.getElementById('sec-reflection');
 
       function openModal(key) {
         const p = PROJECTS[key]; if (!p) return;
-        titleEl.textContent = p.title;
-        imgEl.src = p.img; imgEl.alt = p.title + " larger preview";
-        descEl.textContent = p.desc;
-        linkEl.href = p.link;
+
+        titleEl.textContent = p.title || "";
+        secOverview.textContent = p.overview || "";
+        secDid.textContent = p.did || "";
+        secOutcome.textContent = p.outcome || "";
+        secLimitations.textContent = p.limitations || "";
+        secReflection.textContent = p.reflection || "";
+
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
       }
+
       function closeModal() {
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
       }
+
+      // Open from tiles
       document.querySelectorAll('.project-link').forEach(a => {
         a.addEventListener('click', e => { e.preventDefault(); openModal(a.dataset.project); });
       });
+
+      // Close on backdrop or X
       modal.addEventListener('click', e => { if (e.target.hasAttribute('data-close')) closeModal(); });
+
+      // Close on ESC
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
     </script>
   </body>
