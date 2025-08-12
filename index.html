@@ -1,216 +1,311 @@
 <!DOCTYPE HTML>
 <!--
-	Prologue by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+  Prologue by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Prologue by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+  <head>
+    <title>Sharon McDermott — Portfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
 
-		<!-- Header -->
-			<div id="header">
+    <!-- Small overrides for your customizations -->
+    <style>
+      /* 1) Stack first/last name so it doesn't collide with the avatar */
+      #logo #title .first,
+      #logo #title .last { display:block; line-height:1.05; }
+      #logo #title { margin-top:.3rem; }
 
-				<div class="top">
+      /* 2) Keep avatar square (no warping), crop nicely */
+      #logo .image.avatar48 img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 50%;
+      }
 
-					<!-- Logo -->
-						<div id="logo">
-							<span class="image avatar48"><img src="1000004430.png" alt="" /></span>
-							<h1 id="title">Sharon 
-								McDermott</h1>
-							<p>Human-centered Analyst</p>
-						</div>
+      /* 4) About Me paragraphs left-aligned */
+      #about .container p { text-align:left; }
 
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
-								<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a></li>
-								<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
-								<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
-							</ul>
-						</nav>
+      /* 5) Contact copy left-aligned (slightly narrower for readability) */
+      #contact .container p { text-align:left; max-width: 60ch; margin: 0 0 1.5rem 0; }
 
-				</div>
+      /* 3) Simple modal styles for project details */
+      .modal { position:fixed; inset:0; display:none; }
+      .modal.is-open { display:block; }
+      .modal__backdrop { position:absolute; inset:0; background:rgba(0,0,0,.55); }
+      .modal__dialog {
+        position:relative; max-width:720px; margin:6vh auto; background:#fff;
+        padding:1.5rem; border-radius:12px; box-shadow:0 10px 50px rgba(0,0,0,.3);
+      }
+      .modal__close {
+        position:absolute; top:.5rem; right:.75rem; font-size:1.75rem;
+        line-height:1; background:none; border:none; cursor:pointer;
+      }
+      #modal-image { width:100%; height:auto; margin:.5rem 0 1rem; border-radius:8px; }
+      #modal-link { display:inline-block; margin-top:.5rem; }
+    </style>
+  </head>
+  <body class="is-preload">
 
-				<div class="bottom">
+    <!-- Header -->
+    <div id="header">
+      <div class="top">
 
-					<!-- Social Icons -->
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-							<li><a href="https://www.linkedin.com/in/YOUR_USERNAME/" class="icon brands fa-linkedin" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>							
-							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						</ul>
+        <!-- Logo -->
+        <div id="logo">
+          <span class="image avatar48"><img src="1000004430.png" alt="Portrait of Sharon McDermott" /></span>
+          <h1 id="title"><span class="first">Sharon</span><span class="last">McDermott</span></h1>
+          <p>Human-centered Analyst</p>
+        </div>
 
-				</div>
+        <!-- Nav -->
+        <nav id="nav">
+          <ul>
+            <li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
+            <li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a></li>
+            <li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+            <li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
+          </ul>
+        </nav>
+      </div>
 
-			</div>
+      <div class="bottom">
+        <!-- Social Icons -->
+        <ul class="icons">
+          <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+          <li><a href="https://www.linkedin.com/in/YOUR_USERNAME/" class="icon brands fa-linkedin" target="_blank" rel="noopener noreferrer"><span class="label">LinkedIn</span></a></li>
+          <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+      </div>
+    </div>
 
-		<!-- Main -->
-			<div id="main">
+    <!-- Main -->
+    <div id="main">
 
-				<!-- Intro -->
-					<section id="top" class="one dark cover">
-						<div class="container">
+      <!-- Intro -->
+      <section id="top" class="one dark cover">
+        <div class="container">
+          <header>
+            <h2 class="alt">Hi! I'm <strong>Sharon McDermott</strong><br /></h2>
+            <p>I’m a data-driven problem-solver who loves turning messy numbers and half-formed hunches into actionable insights. 
+              With 4+ years blending mixed-methods research, data analytics, and customer experience insights, I uncover patterns 
+              in markets and human behavior to guide business decisions, optimize marketing performance, and reveal opportunities 
+              that might otherwise be missed.</p>
+          </header>
+          <footer>
+            <a href="#portfolio" class="button scrolly">View Portfolio</a>
+          </footer>
+        </div>
+      </section>
 
-							<header>
-								<h2 class="alt">Hi! I'm <strong>Sharon McDemrott</strong><br /></a>.</h2>
-								<p>I’m a data-driven problem-solver who loves turning messy numbers and half-formed hunches into actionable insights. 
-									With 4+ years blending mixed-methods research, data analytics, and customer experience insights, I uncover patterns 
-									in markets and human behavior to guide business decisions, optimize marketing performance, and reveal opportunities 
-									that might otherwise be missed.<br />
-								</p>
-							</header>
+      <!-- Portfolio -->
+      <section id="portfolio" class="two">
+        <div class="container">
 
-							<footer>
-								<a href="#portfolio" class="button scrolly">View Portfolio</a>
-							</footer>
+          <header>
+            <h2>Portfolio</h2>
+          </header>
 
-						</div>
-					</section>
+          <p>Selected projects. Click a tile to see a quick summary.</p>
 
-				<!-- Portfolio -->
-					<section id="portfolio" class="two">
-						<div class="container">
+          <div class="row">
+            <div class="col-4 col-12-mobile">
+              <article class="item">
+                <a href="#" class="image fit project-link" data-project="p1">
+                  <img src="images/pic02.jpg" alt="Ipsum Feugiat preview" />
+                </a>
+                <header><h3>Ipsum Feugiat</h3></header>
+              </article>
 
-							<header>
-								<h2>Portfolio</h2>
-							</header>
+              <article class="item">
+                <a href="#" class="image fit project-link" data-project="p2">
+                  <img src="images/pic03.jpg" alt="Project 1 preview" />
+                </a>
+                <header><h3>Project 1</h3></header>
+              </article>
+            </div>
 
-							<p>Vitae natoque dictum etiam semper magnis enim feugiat convallis convallis
-							egestas rhoncus ridiculus in quis risus amet curabitur tempor orci penatibus.
-							Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis
-							fusce hendrerit lacus ridiculus.</p>
+            <div class="col-4 col-12-mobile">
+              <article class="item">
+                <a href="#" class="image fit project-link" data-project="p3">
+                  <img src="images/pic04.jpg" alt="Project 2 preview" />
+                </a>
+                <header><h3>Project 2</h3></header>
+              </article>
 
-							<div class="row">
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-										<header>
-											<h3>Ipsum Feugiat</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-										<header>
-											<h3>Project 1</h3>
-										</header>
-									</article>
-								</div>
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
-										<header>
-											<h3>Project 2</h3>
-										</header>
-									</article>
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
-										<header>
-											<h3>Project 3</h3>
-										</header>
-									</article>
-								</div>
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
-									</article>
-								</div>
-							</div>
+              <article class="item">
+                <a href="#" class="image fit project-link" data-project="p4">
+                  <img src="images/pic05.jpg" alt="Project 3 preview" />
+                </a>
+                <header><h3>Project 3</h3></header>
+              </article>
+            </div>
 
-						</div>
-					</section>
+            <div class="col-4 col-12-mobile">
+              <article class="item">
+                <a href="#" class="image fit project-link" data-project="p5">
+                  <img src="images/pic06.jpg" alt="Gallery item preview" />
+                </a>
+              </article>
+            </div>
+          </div>
 
-				<!-- About Me -->
-					<section id="about" class="three">
-						<div class="container">
+        </div>
+      </section>
 
-							<header>
-								<h2>About Me</h2>
-							</header>
+      <!-- About Me -->
+      <section id="about" class="three">
+        <div class="container">
 
-							<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
+          <header>
+            <h2>About Me</h2>
+          </header>
 
-							<p>Hello! I'm Sharon McDermott, born and raised in Los Angeles—specifically, the intersection of Sepulveda and Venice, 
-								where, for a decade, the world began and ended outside a pink apartment building and its stubborn patch of grass. 
-								I'm the youngest in my family, a position that came with a particular image: delicate, breakable, and needing protection. 
-								I didn't love that narrative. So, I rewrote it. Tae Kwon Do became my plot twist—a way to show the world (and myself) 
-								that I could hold my own. Somewhere between sparring practice and broken boards, I discovered something else: 
-								I liked surprising people. Especially when that person was me.Los Angeles raised me on art, cinema, and history. 
-								It's why I draw, can't resist a museum, and gravitate to films where nothing explodes, but everything matters. 
-								Classics, romance, comedy; films that linger on the small, honest moments of being human.At ten, my world stretched 
-								285 miles east to Las Vegas, trading palm trees for neon lights that mimicked the absent stars. The desert had fewer 
-								art-house theaters, but it was decorated in many personalities. I became an observer, a listener, a collector of stories 
-								that weren't mine but felt like they could be. I never used to think much about my own story. I was more interested in 
-								writing characters I'd never met but somehow understood. My closet still holds notebooks of secret worlds and nearly-whispered 
-								lives that I had written.Psychology and philosophy slipped into my life like they’d always belonged there; like a newly 
-								discovered book with an already cracked spine and bent pages. I devoured books and never quite recovered from Frankenstein 
-								—a story that feels like a love letter to anyone who's ever felt "other"—and Aristotle's Physics, which I didn't expect to 
-								love but did because it made me question everything and stirred a kind of curiosity I hadn’t realized was there.Eventually, 
-								I pursued a B.S. in Psychology at UNLV—partly to understand people a little bit better, mainly to help them feel understood 
-								in return. Research, as it turned out, wasn't dry and clinical. It was alive. I became a research coordinator and realized 
-								I loved turning curiosity into data and data into meaning. That curiosity pushed me to earn an M.S. in Data Science—because 
-								I didn't only want to ask questions but find answers in the details. Now, I'm drawn to a career where empathy meets inquiry—where 
-								storytelling meets structure.</p>
+          <a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
 
-						</div>
-					</section>
+          <p>Hello! I'm Sharon McDermott, born and raised in Los Angeles—specifically, the intersection of Sepulveda and Venice, where the world began and ended outside a pink apartment building and its stubborn patch of grass.</p>
 
-				<!-- Contact -->
-					<section id="contact" class="four">
-						<div class="container">
+          <p>I'm the youngest in my family, a position that came with a particular image: delicate, breakable, and needing protection. I didn't love that narrative, so I rewrote it. Tae Kwon Do became my plot twist—a way to show the world (and myself) that I could hold my own. Somewhere between sparring practice and broken boards, I discovered I liked surprising people—especially when that person was me.</p>
 
-							<header>
-								<h2>Contact</h2>
-							</header>
+          <p>Los Angeles raised me on art, cinema, and history. It's why I draw, can't resist a museum, and gravitate to films where nothing explodes, but everything matters. At ten, my world stretched 285 miles east to Las Vegas. The desert had fewer art-house theaters, but it was decorated in many personalities. I became an observer, a listener, a collector of stories that weren't mine but felt like they could be.</p>
 
-							<p>Contact me if you want someone who can dive into the chaos of numbers and come back with a story that actually means something, 
-								that’s my sweet spot. I’ll bring the data, the curiosity, and the kind of clarity that makes the insight impossible to forget.</p>
+          <p>Psychology and philosophy slipped into my life like they'd always belonged there. Eventually, I pursued a B.S. in Psychology at UNLV, then became a research coordinator and realized I loved turning curiosity into data and data into meaning. That curiosity pushed me to earn an M.S. in Data Science—I didn't just want to ask questions; I wanted to find answers in the details.</p>
 
-							<form method="post" action="#">
-								<div class="row">
-									<div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Name" /></div>
-									<div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Email" /></div>
-									<div class="col-12">
-										<textarea name="message" placeholder="Message"></textarea>
-									</div>
-									<div class="col-12">
-										<input type="submit" value="Send Message" />
-									</div>
-								</div>
-							</form>
+          <p>Now, I'm drawn to a career where empathy meets inquiry—where storytelling meets structure.</p>
 
-						</div>
-					</section>
+        </div>
+      </section>
 
-			</div>
+      <!-- Contact -->
+      <section id="contact" class="four">
+        <div class="container">
 
-		<!-- Footer -->
-			<div id="footer">
+          <header>
+            <h2>Contact</h2>
+          </header>
 
-				<!-- Copyright -->
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
+          <p>Contact me if you want someone who can dive into the chaos of numbers and come back with a story that actually means something—that’s my sweet spot. I’ll bring the data, the curiosity, and the kind of clarity that makes the insight impossible to forget.</p>
 
-			</div>
+          <form method="post" action="#">
+            <div class="row">
+              <div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Name" /></div>
+              <div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Email" /></div>
+              <div class="col-12">
+                <textarea name="message" placeholder="Message"></textarea>
+              </div>
+              <div class="col-12">
+                <input type="submit" value="Send Message" />
+              </div>
+            </div>
+          </form>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+        </div>
+      </section>
 
-	</body>
+    </div>
 
+    <!-- Footer -->
+    <div id="footer">
+      <ul class="copyright">
+        <li>&copy; Sharon McDermott. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+      </ul>
+    </div>
+
+    <!-- Modal (for portfolio project details) -->
+    <div id="project-modal" class="modal" aria-hidden="true">
+      <div class="modal__backdrop" data-close></div>
+      <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal__close" aria-label="Close" data-close>&times;</button>
+        <h3 id="modal-title"></h3>
+        <img id="modal-image" alt="" />
+        <p id="modal-desc"></p>
+        <a id="modal-link" target="_blank" rel="noopener noreferrer">View project →</a>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Modal logic -->
+    <script>
+      // Map each tile to its modal content. Update with your real project info/links.
+      const PROJECTS = {
+        p1: {
+          title: "Ipsum Feugiat",
+          img: "images/pic02.jpg",
+          desc: "Short description of the project: goal, methods (e.g., SQL + Tableau), and one measurable result.",
+          link: "#"
+        },
+        p2: {
+          title: "Project 1",
+          img: "images/pic03.jpg",
+          desc: "What problem you solved, how you approached it, and the decision your analysis enabled.",
+          link: "#"
+        },
+        p3: {
+          title: "Project 2",
+          img: "images/pic04.jpg",
+          desc: "A concise insight-driven summary—perfect for recruiters skimming.",
+          link: "#"
+        },
+        p4: {
+          title: "Project 3",
+          img: "images/pic05.jpg",
+          desc: "Mention tools (Python, R, SQL) and the impact on marketing/operations.",
+          link: "#"
+        },
+        p5: {
+          title: "Gallery Item",
+          img: "images/pic06.jpg",
+          desc: "Swap this with your real project details.",
+          link: "#"
+        }
+      };
+
+      const modal = document.getElementById('project-modal');
+      const titleEl = document.getElementById('modal-title');
+      const imgEl   = document.getElementById('modal-image');
+      const descEl  = document.getElementById('modal-desc');
+      const linkEl  = document.getElementById('modal-link');
+
+      function openModal(key) {
+        const p = PROJECTS[key]; if (!p) return;
+        titleEl.textContent = p.title;
+        imgEl.src = p.img; imgEl.alt = p.title + " larger preview";
+        descEl.textContent = p.desc;
+        linkEl.href = p.link;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.project-link').forEach(a => {
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          openModal(a.dataset.project);
+        });
+      });
+      modal.addEventListener('click', e => {
+        if (e.target.hasAttribute('data-close')) closeModal();
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeModal();
+      });
+    </script>
+  </body>
 </html>
-
-
