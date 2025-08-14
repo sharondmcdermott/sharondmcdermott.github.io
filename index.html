@@ -18,118 +18,93 @@
 
     <!-- Custom overrides -->
     <style>
-      :root {
-        --accent: #4a6d57;
-        --tag-orange: #f08a24;  /* Statistical Analysis */
-        --tag-green:  #4a6d57;  /* SAS */
-        --tag-blue:   #2b6cb0;  /* Quantitative */
+      :root{
+        --accent:#4a6d57;
+
+        /* Tag colors */
+        --tag-orange:#f08a24;              /* Statistical Analysis */
+        --tag-orange-bg:rgba(240,138,36,.25);
+
+        --tag-green:#4a6d57;               /* SAS */
+        --tag-green-bg:rgba(74,109,87,.25);
+
+        --tag-blue:#2b6cb0;                /* Quantitative */
+        --tag-blue-bg:rgba(43,108,176,.25);
       }
 
       /* Global font: Lato everywhere */
       body, input, textarea, select, button {
-        font-family: "Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-family:"Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
       }
 
       /* About section uses handwriting font (readable) */
       #about .container p,
-      #about .container h2 {
-        font-family: "Kalam", "Lato", sans-serif;
-      }
+      #about .container h2 { font-family:"Kalam", "Lato", sans-serif; }
 
       /* Stack first/last name cleanly */
       #logo #title .first, #logo #title .last { display:block; line-height:1.05; }
       #logo #title { margin-top:.3rem; }
 
       /* Avatar: keep square, remove halo */
-      #logo .image.avatar48 {
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-      }
-      #logo .image.avatar48 img {
-        width: 100%;
-        height: 100%;
-        aspect-ratio: 1 / 1;
-        object-fit: cover;
-        border-radius: 8px;
-      }
+      #logo .image.avatar48{ background:transparent!important; border:none!important; box-shadow:none!important; }
+      #logo .image.avatar48 img{ width:100%; height:100%; aspect-ratio:1/1; object-fit:cover; border-radius:8px; }
 
       /* Nav icon + label color when active/hovered */
-      #nav ul li a span:before { transition: color .2s ease; }
-      #nav ul li a:hover span:before,
-      #nav ul li a.active span:before { color: var(--accent) !important; }
-      #nav ul li a:hover span,
-      #nav ul li a.active span { color: var(--accent) !important; }
+      #nav ul li a span:before{ transition:color .2s ease; }
+      #nav ul li a:hover span:before, #nav ul li a.active span:before{ color:var(--accent)!important; }
+      #nav ul li a:hover span, #nav ul li a.active span{ color:var(--accent)!important; }
 
       /* Social icons hover tint */
-      .icons a:hover { color: var(--accent) !important; }
+      .icons a:hover{ color:var(--accent)!important; }
 
       /* About Me: left-align + tighter spacing */
-      #about .container p {
-        text-align: left;
-        margin: 0 0 0.9rem 0;
-        line-height: 1.75;
-        font-size: 1.05rem;
-      }
+      #about .container p{ text-align:left; margin:0 0 .9rem 0; line-height:1.75; font-size:1.05rem; }
 
       /* Contact: left-aligned text but centered block */
-      #contact .container p {
-        text-align: left;
-        max-width: 60ch;
-        margin: 0 auto 1.2rem auto;
-      }
+      #contact .container p{ text-align:left; max-width:60ch; margin:0 auto 1.2rem; }
 
       /* Tag chips under project titles */
-      .tags {
-        list-style: none; padding: 0; margin: .35rem 0 0 0;
-        display: flex; flex-wrap: wrap; gap: .45rem;
+      .tags{ list-style:none; padding:0; margin:.5rem 0 0 0; display:flex; flex-wrap:wrap; gap:.6rem; }
+      .tags .tag{
+        font-size:.85rem;
+        padding:.45rem .85rem;            /* more padding so text isn’t on the edge */
+        border:2px solid currentColor;
+        border-radius:12px;               /* rectangular with rounded edges */
+        background:transparent;           /* set specific bg per tag below */
+        line-height:1;
+        display:inline-block;
+        letter-spacing:.01em;
       }
-      .tags .tag {
-        font-size: .8rem; padding: .35rem .6rem;
-        border: 2px solid currentColor;
-        border-radius: 10px;         /* less rounded, rectangular with rounded edges */
-        background: transparent;     /* transparent interior */
-        line-height: 1; display: inline-block;
-      }
-      .tag--stat  { color: var(--tag-orange); }
-      .tag--sas   { color: var(--tag-green); }
-      .tag--quant { color: var(--tag-blue); }
+      .tag--stat{ color:var(--tag-orange); background:var(--tag-orange-bg); }
+      .tag--sas{ color:var(--tag-green); background:var(--tag-green-bg); }
+      .tag--quant{ color:var(--tag-blue); background:var(--tag-blue-bg); }
 
       /* Modal (case-study) */
-      .modal { position: fixed; inset: 0; display: none; }
-      .modal.is-open { display: block; }
-      .modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.55); }
-      .modal__dialog {
-        position: relative; max-width: 920px; margin: 6vh auto; background: #fff;
-        padding: 1.5rem 1.75rem; border-radius: 12px; box-shadow: 0 10px 50px rgba(0,0,0,.3);
-        color: #2b2b2b; max-height: 88vh; overflow: auto;
+      .modal{ position:fixed; inset:0; display:none; }
+      .modal.is-open{ display:block; }
+      .modal__backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.55); }
+      .modal__dialog{
+        position:relative; max-width:920px; margin:6vh auto; background:#fff;
+        padding:1.5rem 1.75rem; border-radius:12px; box-shadow:0 10px 50px rgba(0,0,0,.3);
+        color:#2b2b2b; max-height:88vh; overflow:auto;
       }
 
-      /* CLOSE BUTTON — always visible, brand color */
-      .modal__close {
-        position: absolute;
-        top: .5rem;
-        right: .75rem;
-        font-size: 2rem;
-        font-weight: 800;
-        line-height: 1;
-        color: #4a6d57 !important;   /* requested color */
-        background: transparent !important;
-        border: none !important;
-        cursor: pointer;
-        z-index: 5;
-        opacity: 1 !important;       /* ensure it's not faded */
-        display: inline-block;
+      /* Close button — always visible */
+      .modal__close{
+        position:absolute; top:.5rem; right:.75rem;
+        font-size:2rem; font-weight:800; line-height:1;
+        color:#4a6d57!important; background:transparent!important; border:none!important;
+        cursor:pointer; z-index:5; opacity:1!important; display:inline-block;
       }
-      .modal__close:hover,
-      .modal__close:focus {
-        outline: 2px solid #4a6d57;
-        outline-offset: 2px;
-      }
+      .modal__close:hover, .modal__close:focus{ outline:2px solid #4a6d57; outline-offset:2px; }
 
-      .modal__sections h4 { margin: 1rem 0 .35rem; color: var(--accent); }
-      .modal__sections p, .modal__sections ul { margin: .2rem 0 .8rem; line-height: 1.7; }
-      .modal__sections hr { border: 0; border-top: 1px solid #e6e6e6; margin: 1rem 0; }
+      /* Modal typography */
+      .modal__sections h4{ margin:1rem 0 .35rem; color:var(--accent); font-size:18px; }
+      .modal__sections h3{ font-size:18px; margin:.6rem 0 .25rem; }
+      .modal__sections p,
+      .modal__sections ul,
+      .modal__sections li{ font-size:14px; line-height:1.7; }
+      .modal__sections hr{ border:0; border-top:1px solid #e6e6e6; margin:1rem 0; }
     </style>
   </head>
   <body class="is-preload">
@@ -196,8 +171,8 @@
               <!-- UPDATED TILE -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p1">
-                  <!-- Set image path here -->
-                  <img src="images/RuralUrbanMH.png"/>
+                  <!-- Absolute path per your request -->
+                  <img src="https://sharondmcdermott.github.io/RuralUrbanMH.png" alt="Rural vs Urban Mental Health preview" />
                 </a>
                 <header>
                   <h3>Rural vs Urban Mental Health</h3>
@@ -450,10 +425,10 @@
           reflection: `
 <p>This study leverages recent, large-scale data and includes key controls. Results underscore the importance of considering urban/rural residency alongside sex, age, race, and healthcare access. Future work could broaden covariates (e.g., socioeconomic status, social support, environmental stressors), examine higher-order interactions, and compare multiple years (e.g., 2010, 2015, 2020, 2022) to inform targeted interventions such as telehealth and mobile mental health clinics in rural areas and environmental and community-focused approaches in urban areas, including funding and community-based programs to reduce stigma.</p>`
         },
-        p2: { title: "Project 1", overview: "Short setup of the challenge and stakeholders.", did: "Approach and techniques (SQL, Tableau dashboards, segmentation).", outcome: "Decision enabled or KPI movement.", limitations: "Trade-offs, assumptions, or known gaps.", reflection: "What surprised you, or a next iteration." },
-        p3: { title: "Project 2", overview: "Add your real details here.", did: "Methods/tools.", outcome: "Result.", limitations: "Limitations.", reflection: "Reflection." },
-        p4: { title: "Project 3", overview: "Add your real details here.", did: "Methods/tools.", outcome: "Result.", limitations: "Limitations.", reflection: "Reflection." },
-        p5: { title: "Gallery Item", overview: "Add your real details here.", did: "Methods/tools.", outcome: "Result.", limitations: "Limitations.", reflection: "Reflection." }
+        p2:{ title:"Project 1", overview:"Short setup of the challenge and stakeholders.", did:"Approach and techniques (SQL, Tableau dashboards, segmentation).", outcome:"Decision enabled or KPI movement.", limitations:"Trade-offs, assumptions, or known gaps.", reflection:"What surprised you, or a next iteration." },
+        p3:{ title:"Project 2", overview:"Add your real details here.", did:"Methods/tools.", outcome:"Result.", limitations:"Limitations.", reflection:"Reflection." },
+        p4:{ title:"Project 3", overview:"Add your real details here.", did:"Methods/tools.", outcome:"Result.", limitations:"Limitations.", reflection:"Reflection." },
+        p5:{ title:"Gallery Item", overview:"Add your real details here.", did:"Methods/tools.", outcome:"Result.", limitations:"Limitations.", reflection:"Reflection." }
       };
 
       const modal = document.getElementById('project-modal');
@@ -464,8 +439,8 @@
       const secLimitations = document.getElementById('sec-limitations');
       const secReflection = document.getElementById('sec-reflection');
 
-      function openModal(key) {
-        const p = PROJECTS[key]; if (!p) return;
+      function openModal(key){
+        const p = PROJECTS[key]; if(!p) return;
 
         titleEl.textContent = p.title || "";
         secOverview.innerHTML = p.overview || "";
@@ -475,30 +450,27 @@
         secReflection.innerHTML = p.reflection || "";
 
         modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
+        modal.setAttribute('aria-hidden','false');
         document.body.style.overflow = 'hidden';
-
-        // Scroll to top of modal content for immediate context
         modal.querySelector('.modal__dialog').scrollTop = 0;
       }
 
-      function closeModal() {
+      function closeModal(){
         modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
+        modal.setAttribute('aria-hidden','true');
         document.body.style.overflow = '';
       }
 
       // Open from tiles
-      document.querySelectorAll('.project-link').forEach(a => {
-        a.addEventListener('click', e => { e.preventDefault(); openModal(a.dataset.project); });
+      document.querySelectorAll('.project-link').forEach(a=>{
+        a.addEventListener('click', e=>{ e.preventDefault(); openModal(a.dataset.project); });
       });
 
       // Close on backdrop or X
-      modal.addEventListener('click', e => { if (e.target.hasAttribute('data-close')) closeModal(); });
+      modal.addEventListener('click', e=>{ if(e.target.hasAttribute('data-close')) closeModal(); });
 
       // Close on ESC
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+      document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeModal(); });
     </script>
   </body>
 </html>
-
