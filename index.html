@@ -18,7 +18,12 @@
 
     <!-- Custom overrides -->
     <style>
-      :root { --accent: #4a6d57; }
+      :root {
+        --accent: #4a6d57;
+        --tag-orange: #f08a24;  /* Statistical Analysis */
+        --tag-green:  #4a6d57;  /* SAS */
+        --tag-blue:   #2b6cb0;  /* Quantitative */
+      }
 
       /* Global font: Lato everywhere */
       body, input, textarea, select, button {
@@ -46,7 +51,7 @@
         height: 100%;
         aspect-ratio: 1 / 1;
         object-fit: cover;
-        border-radius: 8px; /* set to 0 for perfectly sharp corners */
+        border-radius: 8px;
       }
 
       /* Nav icon + label color when active/hovered */
@@ -77,33 +82,54 @@
       /* Tag chips under project titles */
       .tags {
         list-style: none; padding: 0; margin: .35rem 0 0 0;
-        display: flex; flex-wrap: wrap; gap: .4rem;
+        display: flex; flex-wrap: wrap; gap: .45rem;
       }
-      .tags li {
-        font-size: .75rem; padding: .25rem .5rem;
-        border: 1px solid rgba(74,109,87,.35);
-        border-radius: 999px; color: #4a6d57; background: rgba(74,109,87,.06);
+      .tags .tag {
+        font-size: .8rem; padding: .35rem .6rem;
+        border: 2px solid currentColor;
+        border-radius: 10px;         /* less rounded, rectangular with rounded edges */
+        background: transparent;     /* transparent interior */
+        line-height: 1; display: inline-block;
       }
+      .tag--stat  { color: var(--tag-orange); }
+      .tag--sas   { color: var(--tag-green); }
+      .tag--quant { color: var(--tag-blue); }
 
       /* Modal (case-study) */
       .modal { position: fixed; inset: 0; display: none; }
       .modal.is-open { display: block; }
       .modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.55); }
       .modal__dialog {
-        position: relative; max-width: 820px; margin: 6vh auto; background: #fff;
+        position: relative; max-width: 920px; margin: 6vh auto; background: #fff;
         padding: 1.5rem 1.75rem; border-radius: 12px; box-shadow: 0 10px 50px rgba(0,0,0,.3);
         color: #2b2b2b; max-height: 88vh; overflow: auto;
       }
+
+      /* CLOSE BUTTON — always visible, brand color */
       .modal__close {
-        position: absolute; top: .5rem; right: .75rem; font-size: 1.75rem;
-        line-height: 1; background: none; border: none; cursor: pointer;
+        position: absolute;
+        top: .5rem;
+        right: .75rem;
+        font-size: 2rem;
+        font-weight: 800;
+        line-height: 1;
+        color: #4a6d57 !important;   /* requested color */
+        background: transparent !important;
+        border: none !important;
+        cursor: pointer;
+        z-index: 5;
+        opacity: 1 !important;       /* ensure it's not faded */
+        display: inline-block;
       }
-      .modal__sections h4 {
-        margin: 1rem 0 .35rem; color: var(--accent);
+      .modal__close:hover,
+      .modal__close:focus {
+        outline: 2px solid #4a6d57;
+        outline-offset: 2px;
       }
-      .modal__sections p {
-        margin: .2rem 0 .8rem; line-height: 1.7;
-      }
+
+      .modal__sections h4 { margin: 1rem 0 .35rem; color: var(--accent); }
+      .modal__sections p, .modal__sections ul { margin: .2rem 0 .8rem; line-height: 1.7; }
+      .modal__sections hr { border: 0; border-top: 1px solid #e6e6e6; margin: 1rem 0; }
     </style>
   </head>
   <body class="is-preload">
@@ -170,12 +196,15 @@
               <!-- UPDATED TILE -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p1">
+                  <!-- Set image path here -->
                   <img src="images/RuralUrbanMH.png" alt="Rural vs Urban Mental Health preview" />
                 </a>
                 <header>
                   <h3>Rural vs Urban Mental Health</h3>
                   <ul class="tags">
-                    <li>Statistical</li><li>SAS</li><li>Quantitative</li>
+                    <li class="tag tag--stat">Statistical Analysis</li>
+                    <li class="tag tag--sas">SAS</li>
+                    <li class="tag tag--quant">Quantitative</li>
                   </ul>
                 </header>
               </article>
@@ -187,7 +216,7 @@
                 <header>
                   <h3>Project 1</h3>
                   <ul class="tags">
-                    <li>SQL</li><li>Tableau</li><li>Segmentation</li>
+                    <li class="tag">SQL</li><li class="tag">Tableau</li><li class="tag">Segmentation</li>
                   </ul>
                 </header>
               </article>
@@ -201,7 +230,7 @@
                 <header>
                   <h3>Project 2</h3>
                   <ul class="tags">
-                    <li>A/B Testing</li><li>Python</li><li>Marketing</li>
+                    <li class="tag">A/B Testing</li><li class="tag">Python</li><li class="tag">Marketing</li>
                   </ul>
                 </header>
               </article>
@@ -213,7 +242,7 @@
                 <header>
                   <h3>Project 3</h3>
                   <ul class="tags">
-                    <li>Survey</li><li>Insights</li><li>Visualization</li>
+                    <li class="tag">Survey</li><li class="tag">Insights</li><li class="tag">Visualization</li>
                   </ul>
                 </header>
               </article>
@@ -227,7 +256,7 @@
                 <header>
                   <h3>Gallery Item</h3>
                   <ul class="tags">
-                    <li>Exploratory</li><li>EDA</li>
+                    <li class="tag">Exploratory</li><li class="tag">EDA</li>
                   </ul>
                 </header>
               </article>
@@ -284,7 +313,7 @@
       </ul>
     </div>
 
-    <!-- Case-study Modal (no image/link) -->
+    <!-- Case-study Modal -->
     <div id="project-modal" class="modal" aria-hidden="true">
       <div class="modal__backdrop" data-close></div>
       <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -293,19 +322,19 @@
 
         <div class="modal__sections">
           <h4>Project Overview</h4>
-          <p id="sec-overview"></p>
+          <div id="sec-overview"></div>
 
           <h4>What We Did</h4>
-          <p id="sec-did"></p>
+          <div id="sec-did"></div>
 
           <h4>Outcome</h4>
-          <p id="sec-outcome"></p>
+          <div id="sec-outcome"></div>
 
           <h4>Limitations</h4>
-          <p id="sec-limitations"></p>
+          <div id="sec-limitations"></div>
 
           <h4>Reflection</h4>
-          <p id="sec-reflection"></p>
+          <div id="sec-reflection"></div>
         </div>
       </div>
     </div>
@@ -323,47 +352,108 @@
     <script>
       // Structured content per project
       const PROJECTS = {
-        // UPDATED PROJECT CONTENT FROM THE PAPER
         p1: {
           title: "Rural vs Urban Mental Health",
-          overview: "This study quantifies the relationship between mental health status and urban/rural residence among U.S. adults while controlling for sex, age, race, and healthcare access, using 2022 BRFSS data. The work is motivated by differing stressors and resource availability across urban and rural environments and aims to provide an updated, comprehensive view using a large, recent sample.",
-          did: "Analyzed BRFSS 2022 (telephone survey). Of 445,132 respondents, 398,295 adults (89%) met inclusion (18+, 50 states, complete data). Outcome: poor mental health (≥14 “not good” days) vs. good. Exposure: rural vs. urban county. Controls: sex, age (18–34; 35–54; 55+), race (White; Black; Other), healthcare access (insured vs. not). Conducted Pearson chi-square tests and logistic regression to estimate adjusted odds ratios (95% CIs). Assessed AUC (0.6203), rescaled R² (0.0433), and deviance; tested interactions and included AREASTAT×RACE; checked confounding via 10% rule. Analysis in SAS.",
-          outcome: "13.7% reported poor mental health. Adjusted: rural vs. urban AOR 0.994 (95% CI 0.967–1.023; not significant); female vs. male 1.590; age 35–54 vs. 18–34: 0.653; age 55+ vs. 18–34: 0.372; Black vs. White: 1.042; Other vs. White: 0.957; those without healthcare access had higher odds (1.315). Interactions: AREASTAT×RACE significant; with effect modification, rural vs. urban OR range 0.916–1.109; AUC with interaction 0.6210.",
-          limitations: "Self-report may introduce bias; reduction from 445,132 to 398,295 (10.5%) and some subgroups <1,000; healthcare access measured only as insurance presence; unmeasured confounders (e.g., socioeconomic status, pre-existing conditions); modest discrimination and deviance results suggest need for additional variables and complexity.",
-          reflection: "Future work should broaden covariates (e.g., socioeconomic status, social support, environmental stressors), examine higher-order interactions, and compare multiple years (e.g., 2010, 2015, 2020, 2022). Findings point to targeted interventions—such as telehealth and mobile clinics in rural areas and environmental/community approaches in urban areas—with efforts to reduce stigma in underserved communities."
+          overview: `
+<h3>Background</h3>
+<p>Mental health issues are prevalent among adults in the United States and are influenced by environmental context, including whether individuals live in urban or rural areas. Rural residents can face isolation and limited access to healthcare, while urban residents may experience stressors such as overcrowding and noise but typically have greater access to services. Building on prior work and addressing gaps in representativeness and covariate control, this study examines the association between mental health and urban/rural status using recent, large-scale data.</p>
+
+<h3>Research Objectives</h3>
+<ul>
+  <li>Quantify the relationship between urban/rural status and mental health among U.S. adults.</li>
+  <li>Control for sex, age, race, and healthcare access.</li>
+  <li>Test for confounding and effect modification.</li>
+  <li>Evaluate model fit and discrimination.</li>
+</ul>
+<hr/>`,
+          did: `
+<h3>Planning &amp; Prep</h3>
+<p>We used the 2022 Behavioral Risk Factor Surveillance System (BRFSS) telephone survey. Of 445,132 respondents, 398,295 adults (89%) met inclusion criteria: age ≥18, residence in one of the 50 states, and complete data.</p>
+
+<p><strong>Variables</strong></p>
+<ul>
+  <li><strong>Outcome (MHSTAT):</strong> Poor mental health (≥14 “not good” days in the last 30) vs. good (0–13 days).</li>
+  <li><strong>Exposure (AREASTAT):</strong> Rural county vs. urban county.</li>
+  <li><strong>Controls:</strong> Sex (female/male), age (18–34; 35–54; 55+), race (White; Black; Other), healthcare access (any insurance vs. none).</li>
+</ul>
+<p>Analyses were conducted in SAS.</p>
+
+<h3>Methodology</h3>
+<ul>
+  <li>Descriptive statistics and Pearson chi-square tests of association:
+    <ul>
+      <li>Between control variables and urban/rural status.</li>
+      <li>Between exposure, controls, and mental health status.</li>
+    </ul>
+  </li>
+  <li>Logistic regression estimating adjusted odds ratios (AORs) and 95% CIs for poor mental health with AREASTAT and all controls.</li>
+  <li>Model assessment: AUC, rescaled R², and deviance goodness-of-fit.</li>
+  <li>Interaction testing; retained <strong>AREASTAT × RACE</strong> based on statistical significance.</li>
+  <li>Confounding checks using a 10% change-in-estimate rule.</li>
+</ul>
+<hr/>`,
+          outcome: `
+<h3>Selected Key Findings</h3>
+
+<p><strong>Sample characteristics (n = 398,295)</strong></p>
+<ul>
+  <li>Sex: 53.2% female, 46.8% male.</li>
+  <li>Age: 16.3% (18–34), 28.5% (35–54), 55.2% (55+).</li>
+  <li>Race: 76.3% White, 8.0% Black, 15.7% Other.</li>
+  <li>Healthcare access: 94.8% yes, 5.2% no.</li>
+  <li>Area: 87.3% urban (347,842), 12.7% rural (50,453).</li>
+</ul>
+
+<p><strong>Poor mental health prevalence</strong></p>
+<ul><li><strong>13.7%</strong> (54,722/398,295) reported poor mental health.</li></ul>
+
+<p><strong>Bivariate associations:</strong> Overall, chi-square tests showed statistically significant relationships across sex, age, race, healthcare access, and area status; poorer mental health was more common among females and younger adults, more frequent among those without healthcare access, and distributions differed by race and urban/rural residence.</p>
+<ul>
+  <li><strong>Sex:</strong> Females were overrepresented among those with poor mental health (61.8% vs. 53.2%; <em>p</em>&lt;0.0001).</li>
+  <li><strong>Age:</strong> 18–34 were overrepresented in the poor-MH group (26.7% vs. 16.3%); 55+ were underrepresented (39.8% vs. 55.2%; <em>p</em>&lt;0.0001).</li>
+  <li><strong>Race:</strong> Black and Other race groups were proportionally higher among those with poor mental health (<em>p</em>&lt;0.0001).</li>
+  <li><strong>Healthcare access:</strong> Those without access were proportionally higher among the poor-MH group (7.6% vs. 5.2%; <em>p</em>=0.0009).</li>
+  <li><strong>Area status:</strong> Urban/rural distribution differed by mental health status (<em>p</em>&lt;0.0001).</li>
+</ul>
+
+<p><strong>Adjusted odds:</strong> After adjustment, rural/urban residence was not a significant predictor on average, while sex and age showed strong associations, race showed small but significant differences, and lack of healthcare access corresponded to higher odds of poor mental health.</p>
+<ul>
+  <li><strong>Rural vs. Urban:</strong> AOR <strong>0.994</strong> (95% CI 0.967–1.023) — not statistically significant.</li>
+  <li><strong>Female vs. Male:</strong> AOR <strong>1.590</strong> (1.561–1.620).</li>
+  <li><strong>Age 35–54 vs. 18–34:</strong> AOR <strong>0.653</strong> (0.637–0.669).</li>
+  <li><strong>Age 55+ vs. 18–34:</strong> AOR <strong>0.372</strong> (0.364–0.382).</li>
+  <li><strong>Black vs. White:</strong> AOR <strong>1.042</strong> (1.009–1.077).</li>
+  <li><strong>Other vs. White:</strong> AOR <strong>0.957</strong> (0.933–0.981).</li>
+  <li><strong>Healthcare access:</strong> Those <strong>without</strong> access had higher odds of poor mental health (AOR <strong>1.315</strong>; 1.267–1.364).</li>
+</ul>
+
+<p><strong>Model performance and interactions:</strong> Overall discrimination was modest and model fit indicated value in accounting for interactions; race modified the association between area status and mental health, with direction and magnitude varying by racial group.</p>
+<ul>
+  <li><strong>AUC = 0.6203</strong>, <strong>rescaled R² = 0.0433</strong>.</li>
+  <li>Deviance goodness-of-fit <em>p</em>&lt;0.001 indicated improved fit with interactions.</li>
+  <li>Adding <strong>AREASTAT × RACE</strong> yielded statistically significant interactions and <strong>AUC = 0.6210</strong>.</li>
+  <li>With effect modification by race, the rural vs. urban odds ratio ranged <strong>0.916–1.109</strong>, with the average effect approximately <strong>1.1 times</strong> greater for rural residents.</li>
+</ul>
+
+<h3>Impact</h3>
+<p>Findings indicate that mental health outcomes differ across demographic and geographic contexts. Considering the variability by race and the observed differences by sex and age, strategies may be tailored to rural settings (addressing isolation and access constraints) and to urban contexts (mitigating environmental stressors), with attention to subgroups identified in the adjusted analyses.</p>
+<hr/>`,
+          limitations: `
+<ul>
+  <li>Self-reported BRFSS data may introduce bias.</li>
+  <li>Sample reduced from 445,132 to 398,295 (10.5%); some subgroups &lt;1,000.</li>
+  <li>Healthcare access measured only as presence of insurance, not level or quality.</li>
+  <li>Potential unmeasured confounding (e.g., socioeconomic status, preexisting conditions).</li>
+  <li>Modest discrimination and deviance test results indicate additional variables and model complexity may improve fit.</li>
+</ul>
+<hr/>`,
+          reflection: `
+<p>This study leverages recent, large-scale data and includes key controls. Results underscore the importance of considering urban/rural residency alongside sex, age, race, and healthcare access. Future work could broaden covariates (e.g., socioeconomic status, social support, environmental stressors), examine higher-order interactions, and compare multiple years (e.g., 2010, 2015, 2020, 2022) to inform targeted interventions such as telehealth and mobile mental health clinics in rural areas and environmental and community-focused approaches in urban areas, including funding and community-based programs to reduce stigma.</p>`
         },
-        p2: {
-          title: "Project 1",
-          overview: "Short setup of the challenge and stakeholders.",
-          did: "Approach and techniques (SQL, Tableau dashboards, segmentation).",
-          outcome: "Decision enabled or KPI movement.",
-          limitations: "Trade-offs, assumptions, or known gaps.",
-          reflection: "What surprised you, or a next iteration."
-        },
-        p3: {
-          title: "Project 2",
-          overview: "Add your real details here.",
-          did: "Methods/tools.",
-          outcome: "Result.",
-          limitations: "Limitations.",
-          reflection: "Reflection."
-        },
-        p4: {
-          title: "Project 3",
-          overview: "Add your real details here.",
-          did: "Methods/tools.",
-          outcome: "Result.",
-          limitations: "Limitations.",
-          reflection: "Reflection."
-        },
-        p5: {
-          title: "Gallery Item",
-          overview: "Add your real details here.",
-          did: "Methods/tools.",
-          outcome: "Result.",
-          limitations: "Limitations.",
-          reflection: "Reflection."
-        }
+        p2: { title: "Project 1", overview: "Short setup of the challenge and stakeholders.", did: "Approach and techniques (SQL, Tableau dashboards, segmentation).", outcome: "Decision enabled or KPI movement.", limitations: "Trade-offs, assumptions, or known gaps.", reflection: "What surprised you, or a next iteration." },
+        p3: { title: "Project 2", overview: "Add your real details here.", did: "Methods/tools.", outcome: "Result.", limitations: "Limitations.", reflection: "Reflection." },
+        p4: { title: "Project 3", overview: "Add your real details here.", did: "Methods/tools.", outcome: "Result.", limitations: "Limitations.", reflection: "Reflection." },
+        p5: { title: "Gallery Item", overview: "Add your real details here.", did: "Methods/tools.", outcome: "Result.", limitations: "Limitations.", reflection: "Reflection." }
       };
 
       const modal = document.getElementById('project-modal');
@@ -378,19 +468,18 @@
         const p = PROJECTS[key]; if (!p) return;
 
         titleEl.textContent = p.title || "";
-        secOverview.textContent = p.overview || "";
-        secDid.textContent = p.did || "";
-        secOutcome.textContent = p.outcome || "";
-        secLimitations.textContent = p.limitations || "";
-        secReflection.textContent = p.reflection || "";
+        secOverview.innerHTML = p.overview || "";
+        secDid.innerHTML = p.did || "";
+        secOutcome.innerHTML = p.outcome || "";
+        secLimitations.innerHTML = p.limitations || "";
+        secReflection.innerHTML = p.reflection || "";
 
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
 
-        // Focus & scroll to Project Overview for immediate context
-        const firstHeader = modal.querySelector('.modal__sections h4');
-        if (firstHeader && firstHeader.scrollIntoView) firstHeader.scrollIntoView({ block: 'start' });
+        // Scroll to top of modal content for immediate context
+        modal.querySelector('.modal__dialog').scrollTop = 0;
       }
 
       function closeModal() {
