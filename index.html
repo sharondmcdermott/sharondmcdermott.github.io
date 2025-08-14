@@ -238,6 +238,23 @@
                   </ul>
                 </header>
               </article>
+
+              <!-- NEW: Income by Sex (Consumer Attitudes EDA) -->
+              <article class="item">
+                <a href="#" class="image fit project-link" data-project="p6">
+                  <!-- Replace the src with your preferred thumbnail -->
+                  <img src="images/pic09.jpg" alt="Income by Sex EDA preview" />
+                </a>
+                <header>
+                  <h3>Income by Sex (Consumer Attitudes EDA)</h3>
+                  <ul class="tags">
+                    <li class="tag tag--stat">Statistical Analysis</li>
+                    <li class="tag tag--sas">Python</li>
+                    <li class="tag tag--quant">Modeling</li>
+                    <li class="tag">EDA</li>
+                  </ul>
+                </header>
+              </article>
             </div>
           </div>
         </div>
@@ -476,7 +493,112 @@
 
         p3:{ title:"Project 2", overview:"Add your real details here.", did:"Methods/tools.", outcome:"Result.", limitations:"Limitations.", reflection:"Reflection." },
         p4:{ title:"Project 3", overview:"Add your real details here.", did:"Methods/tools.", outcome:"Result.", limitations:"Limitations.", reflection:"Reflection." },
-        p5:{ title:"Gallery Item", overview:"Add your real details here.", did:"Methods/tools.", outcome:"Result.", limitations:"Limitations.", reflection:"Reflection." }
+        p5:{ title:"Gallery Item", overview:"Add your real details here.", did:"Methods/tools.", outcome:"Result.", limitations:"Limitations.", reflection:"Reflection." },
+
+        /* NEW: Income by Sex (Consumer Attitudes EDA) */
+        p6: {
+          title: "Income by Sex (Consumer Attitudes EDA)",
+          overview: `
+<h3>Background</h3>
+<p>This analysis conducts exploratory data analysis (EDA) on a consumer attitudes dataset to examine whether household income differs by sex. The data describe factors related to saving, borrowing, purchasing, and confidence in personal finances and national business conditions. Within that context, the study focuses on modeling income by sex and interpreting distributional patterns and inferential results suitable for decision-making.</p>
+
+<h3>Research Objectives</h3>
+<ul>
+  <li>Describe the dataset structure and variables relevant to income.</li>
+  <li>Recode sex for analysis and summarize distributions and group differences.</li>
+  <li>Visualize income by sex to assess shape and spread.</li>
+  <li>Estimate and interpret:
+    <ul>
+      <li>a baseline mean model for females, and</li>
+      <li>a linear model with sex as the predictor.</li>
+    </ul>
+  </li>
+  <li>Generate predictions and residuals; compute error metrics.</li>
+  <li>Test group differences with ANOVA and quantify proportional reduction in error (R&sup2;).</li>
+  <li>Conclude with an interpretation of findings.</li>
+</ul>
+<hr/>`,
+          did: `
+<h3>Planning &amp; Prep</h3>
+<p>Imported the dataset (<code>ACS.csv</code>) and created the analysis dataframe.</p>
+<p><strong>Dataset size:</strong> 1,000 observations and 9 variables:</p>
+<ul>
+  <li><strong>Sex</strong> (0 = Female, 1 = Male), <strong>Age</strong>, <strong>Married</strong>, <strong>Income</strong> (in thousands),</li>
+  <li><strong>HoursWk</strong>, <strong>Race</strong>, <strong>USCitizen</strong>, <strong>HealthInsurance</strong>, <strong>Language</strong>.</li>
+</ul>
+<p>Re-coded Sex to labeled values (Female/Male) for interpretation.</p>
+
+<h3>Methodology</h3>
+<ul>
+  <li><strong>Data structure &amp; tabulations:</strong> Verified variable types and ranges; produced a Race &times; Sex crosstab to profile sample composition.</li>
+  <li><strong>Descriptive statistics:</strong> Scaled Income to dollars (thousands &times; 1,000) and computed minimum, quartiles, median, maximum, mean, and standard deviation, as well as mean income by sex.</li>
+  <li><strong>Visualization:</strong> Created histograms of income by sex (combined and faceted) to assess right skew, mass at low values, and the upper tail.</li>
+  <li><strong>Models:</strong>
+    <ul>
+      <li>Intercept-only model for females (baseline mean).</li>
+      <li><code>Income ~ Sex</code> linear model using the labeled sex variable (SexL).</li>
+    </ul>
+  </li>
+  <li><strong>Diagnostics &amp; inference:</strong> Generated predicted values and residuals; calculated the sum of squared residuals; performed ANOVA on the sex model; reported R&sup2; as the proportional reduction in error.</li>
+</ul>
+<hr/>`,
+          outcome: `
+<h3>Selected Key Findings</h3>
+
+<p><strong>Data structure &amp; crosstab (n = 1,000)</strong></p>
+<p>Variables cover demographics and socioeconomics linked to income (sex, age, marital status, hours worked, race, citizenship, health insurance, language).</p>
+<p><strong>Race &times; Sex counts:</strong></p>
+<ul>
+  <li>Female: Asian = 30, Black = 60, Other = 33, White = 414</li>
+  <li>Male: Asian = 40, Black = 46, Other = 30, White = 347</li>
+</ul>
+
+<p><strong>Income (dollars)</strong></p>
+<ul>
+  <li>Min = 0, Q1 = 0, Median = 13,000, Q3 = 31,841.09, Max = 563,000</li>
+  <li>Mean = 22,785.13, SD = 39,141.88</li>
+  <li>Mean by sex: Female = 17,794.32; Male = 28,573.61</li>
+</ul>
+
+<p><strong>Distribution &amp; visuals</strong></p>
+<ul>
+  <li>Histograms show strong right skew, with many observations near zero and a long upper tail.</li>
+  <li>Female incomes are more concentrated at lower levels; male incomes extend further into higher brackets.</li>
+  <li>Most observations lie well below the upper axis limit, indicating a small number of high-income outliers.</li>
+</ul>
+
+<p><strong>Models &amp; predictions</strong></p>
+<ul>
+  <li>Female-only baseline (intercept): <strong>17,794.32</strong> — the sample mean for females.</li>
+  <li><code>Income ~ Sex</code> (SexL):
+    <ul>
+      <li>Intercept (Female): <strong>17,794.32</strong></li>
+      <li>Coefficient (Male vs Female): <strong>approximately +10,779</strong></li>
+    </ul>
+  </li>
+  <li>Predicted means align with observed group means (Female ≈ 17,794.32; Male ≈ 28,573.61).</li>
+  <li>Sum of squared residuals ≈ <strong>1.501 &times; 10<sup>12</sup></strong>.</li>
+</ul>
+
+<p><strong>ANOVA &amp; proportional reduction in error</strong></p>
+<ul>
+  <li><strong>F = 19.2</strong>, <strong>p ≈ 1.302 &times; 10<sup>&minus;5</sup></strong> → income differs by sex in this sample.</li>
+  <li><strong>R&sup2; ≈ 0.0189</strong> → sex explains about 1.89% of the variance in income; statistically significant but a small share of overall variability.</li>
+</ul>
+
+<h3>Impact</h3>
+<p>The analysis identifies a statistically significant income difference by sex, with higher average income among males. At the same time, the small R&sup2; indicates that most income variability is not explained by sex alone, suggesting the need for broader models that incorporate additional determinants of income.</p>
+<hr/>`,
+          limitations: `
+<ul>
+  <li>The simple model (<code>Income ~ Sex</code>) does not adjust for other factors; potential confounding remains.</li>
+  <li>Right-skew with extreme values suggests influential outliers that can affect summaries.</li>
+  <li>Despite statistical significance, the explained variance is modest, limiting predictive utility for sex alone.</li>
+</ul>
+<hr/>`,
+          reflection: `
+<p>Results indicate a significant sex-based income difference in this dataset, yet income is multifactorial. Extending the analysis with additional variables—such as education, occupation, experience, and related socioeconomic factors—and exploring interactions or nonlinear forms would likely improve model fit and provide a fuller understanding of income determination.</p>`
+        },
       };
 
       const modal = document.getElementById('project-modal');
