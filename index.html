@@ -67,10 +67,10 @@
       .tags{ list-style:none; padding:0; margin:.5rem 0 0 0; display:flex; flex-wrap:wrap; gap:.6rem; }
       .tags .tag{
         font-size:.85rem;
-        padding:.45rem .85rem;            /* roomy so text isn’t on the edge */
+        padding:.45rem .85rem;
         border:2px solid currentColor;
-        border-radius:12px;               /* rectangular with rounded edges */
-        background:transparent;           /* tinted by each tag class */
+        border-radius:12px;
+        background:transparent;
         line-height:1;
         display:inline-block;
         letter-spacing:.01em;
@@ -186,7 +186,6 @@
               <!-- Project B: Real Estate Thesis -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p2">
-                  <!-- Your requested image -->
                   <img src="Realtor.png" alt="Short-Term Real Estate Investment preview" />
                 </a>
                 <header>
@@ -201,6 +200,7 @@
             </div>
 
             <div class="col-4 col-12-mobile">
+              <!-- Keep a placeholder project if you want three columns -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p3">
                   <img src="images/pic04.jpg" alt="Project 2 preview" />
@@ -212,41 +212,16 @@
                   </ul>
                 </header>
               </article>
-
-              <article class="item">
-                <a href="#" class="image fit project-link" data-project="p4">
-                  <img src="images/pic05.jpg" alt="Project 3 preview" />
-                </a>
-                <header>
-                  <h3>Project 3</h3>
-                  <ul class="tags">
-                    <li class="tag">Survey</li><li class="tag">Insights</li><li class="tag">Visualization</li>
-                  </ul>
-                </header>
-              </article>
             </div>
 
             <div class="col-4 col-12-mobile">
-              <article class="item">
-                <a href="#" class="image fit project-link" data-project="p5">
-                  <img src="images/pic06.jpg" alt="Gallery item preview" />
-                </a>
-                <header>
-                  <h3>Gallery Item</h3>
-                  <ul class="tags">
-                    <li class="tag">Exploratory</li><li class="tag">EDA</li>
-                  </ul>
-                </header>
-              </article>
-
-              <!-- NEW: Income by Sex (Consumer Attitudes EDA) -->
+              <!-- Consumer Attitudes EDA -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p6">
-                  <!-- Replace the src with your preferred thumbnail -->
-                  <img src="images/pic09.jpg" alt="Income by Sex EDA preview" />
+                  <img src="images/pic09.jpg" alt="Consumer Attitudes EDA preview" />
                 </a>
                 <header>
-                  <h3>Income by Sex (Consumer Attitudes EDA)</h3>
+                  <h3>Consumer Attitudes EDA</h3>
                   <ul class="tags">
                     <li class="tag tag--stat">Statistical Analysis</li>
                     <li class="tag tag--sas">Python</li>
@@ -347,7 +322,7 @@
     <script>
       // Structured content per project
       const PROJECTS = {
-        /* Mental Health study (kept from your paper) */
+        /* Mental Health study */
         p1: {
           title: "Rural vs Urban Mental Health",
           overview: `
@@ -447,7 +422,7 @@
 <p>This study leverages recent, large-scale data and includes key controls. Results underscore the importance of considering urban/rural residency alongside sex, age, race, and healthcare access. Future work could broaden covariates (e.g., socioeconomic status, social support, environmental stressors), examine higher-order interactions, and compare multiple years (e.g., 2010, 2015, 2020, 2022) to inform targeted interventions such as telehealth and mobile mental health clinics in rural areas and environmental and community-focused approaches in urban areas, including funding and community-based programs to reduce stigma.</p>`
         },
 
-        /* Real estate thesis (only paper info; EXAMPLE-style sections) */
+        /* Real estate thesis */
         p2: {
           title: "Short-Term Real Estate Investment (Bakersfield, CA)",
           overview: `
@@ -491,13 +466,12 @@
 <p>Future work includes expanding macroeconomic features, enriching spatial detail, and operationalizing a lightweight data mart and dashboards for continuous monitoring and decision support.</p>`
         },
 
+        /* Placeholder (optional) */
         p3:{ title:"Project 2", overview:"Add your real details here.", did:"Methods/tools.", outcome:"Result.", limitations:"Limitations.", reflection:"Reflection." },
-        p4:{ title:"Project 3", overview:"Add your real details here.", did:"Methods/tools.", outcome:"Result.", limitations:"Limitations.", reflection:"Reflection." },
-        p5:{ title:"Gallery Item", overview:"Add your real details here.", did:"Methods/tools.", outcome:"Result.", limitations:"Limitations.", reflection:"Reflection." },
 
-        /* NEW: Income by Sex (Consumer Attitudes EDA) */
+        /* Consumer Attitudes EDA */
         p6: {
-          title: "Income by Sex (Consumer Attitudes EDA)",
+          title: "Consumer Attitudes EDA",
           overview: `
 <h3>Background</h3>
 <p>This analysis conducts exploratory data analysis (EDA) on a consumer attitudes dataset to examine whether household income differs by sex. The data describe factors related to saving, borrowing, purchasing, and confidence in personal finances and national business conditions. Within that context, the study focuses on modeling income by sex and interpreting distributional patterns and inferential results suitable for decision-making.</p>
@@ -576,7 +550,7 @@
       <li>Coefficient (Male vs Female): <strong>approximately +10,779</strong></li>
     </ul>
   </li>
-  <li>Predicted means align with observed group means (Female ≈ 17,794.32; Male ≈ 28,573.61).</li>
+  <li>Predicted means align with the observed group means (Female ≈ 17,794.32; Male ≈ 28,573.61).</li>
   <li>Sum of squared residuals ≈ <strong>1.501 &times; 10<sup>12</sup></strong>.</li>
 </ul>
 
@@ -598,7 +572,7 @@
 <hr/>`,
           reflection: `
 <p>Results indicate a significant sex-based income difference in this dataset, yet income is multifactorial. Extending the analysis with additional variables—such as education, occupation, experience, and related socioeconomic factors—and exploring interactions or nonlinear forms would likely improve model fit and provide a fuller understanding of income determination.</p>`
-        },
+        }
       };
 
       const modal = document.getElementById('project-modal');
