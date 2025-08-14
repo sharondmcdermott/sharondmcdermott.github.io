@@ -167,14 +167,15 @@
 
           <div class="row">
             <div class="col-4 col-12-mobile">
+              <!-- UPDATED TILE -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p1">
-                  <img src="images/pic02.jpg" alt="Ipsum Feugiat preview" />
+                  <img src="images/RuralUrbanMH.png" alt="Rural vs Urban Mental Health preview" />
                 </a>
                 <header>
-                  <h3>Ipsum Feugiat</h3>
+                  <h3>Rural vs Urban Mental Health</h3>
                   <ul class="tags">
-                    <li>Qualitative</li><li>Usability</li><li>R</li>
+                    <li>Statistical</li><li>SAS</li><li>Quantitative</li>
                   </ul>
                 </header>
               </article>
@@ -320,15 +321,16 @@
 
     <!-- Modal logic + project data -->
     <script>
-      // Structured content per project (fill with your real text)
+      // Structured content per project
       const PROJECTS = {
+        // UPDATED PROJECT CONTENT FROM THE PAPER
         p1: {
-          title: "Ipsum Feugiat",
-          overview: "Context, problem, and who it was for. One or two sentences.",
-          did: "Methods and tools (e.g., semi-structured interviews, survey in Qualtrics, analysis in R).",
-          outcome: "Key insight(s) and measurable impact, if applicable.",
-          limitations: "Sampling, time, data quality—whatever constrained the work.",
-          reflection: "What you’d do next or learned for future studies."
+          title: "Rural vs Urban Mental Health",
+          overview: "This study quantifies the relationship between mental health status and urban/rural residence among U.S. adults while controlling for sex, age, race, and healthcare access, using 2022 BRFSS data. The work is motivated by differing stressors and resource availability across urban and rural environments and aims to provide an updated, comprehensive view using a large, recent sample.",
+          did: "Analyzed BRFSS 2022 (telephone survey). Of 445,132 respondents, 398,295 adults (89%) met inclusion (18+, 50 states, complete data). Outcome: poor mental health (≥14 “not good” days) vs. good. Exposure: rural vs. urban county. Controls: sex, age (18–34; 35–54; 55+), race (White; Black; Other), healthcare access (insured vs. not). Conducted Pearson chi-square tests and logistic regression to estimate adjusted odds ratios (95% CIs). Assessed AUC (0.6203), rescaled R² (0.0433), and deviance; tested interactions and included AREASTAT×RACE; checked confounding via 10% rule. Analysis in SAS.",
+          outcome: "13.7% reported poor mental health. Adjusted: rural vs. urban AOR 0.994 (95% CI 0.967–1.023; not significant); female vs. male 1.590; age 35–54 vs. 18–34: 0.653; age 55+ vs. 18–34: 0.372; Black vs. White: 1.042; Other vs. White: 0.957; those without healthcare access had higher odds (1.315). Interactions: AREASTAT×RACE significant; with effect modification, rural vs. urban OR range 0.916–1.109; AUC with interaction 0.6210.",
+          limitations: "Self-report may introduce bias; reduction from 445,132 to 398,295 (10.5%) and some subgroups <1,000; healthcare access measured only as insurance presence; unmeasured confounders (e.g., socioeconomic status, pre-existing conditions); modest discrimination and deviance results suggest need for additional variables and complexity.",
+          reflection: "Future work should broaden covariates (e.g., socioeconomic status, social support, environmental stressors), examine higher-order interactions, and compare multiple years (e.g., 2010, 2015, 2020, 2022). Findings point to targeted interventions—such as telehealth and mobile clinics in rural areas and environmental/community approaches in urban areas—with efforts to reduce stigma in underserved communities."
         },
         p2: {
           title: "Project 1",
@@ -385,6 +387,10 @@
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+
+        // Focus & scroll to Project Overview for immediate context
+        const firstHeader = modal.querySelector('.modal__sections h4');
+        if (firstHeader && firstHeader.scrollIntoView) firstHeader.scrollIntoView({ block: 'start' });
       }
 
       function closeModal() {
