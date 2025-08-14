@@ -21,14 +21,14 @@
       :root{
         --accent:#4a6d57;
 
-        /* Tag colors */
-        --tag-orange:#f08a24;              /* Statistical Analysis */
-        --tag-orange-bg:rgba(240,138,36,.25);
+        /* Tag colors (shared across projects) */
+        --tag-orange:#f08a24;                 /* Statistical Analysis */
+        --tag-orange-bg:rgba(240,138,36,.25); /* 75% transparent look */
 
-        --tag-green:#4a6d57;               /* SAS */
+        --tag-green:#4a6d57;                  /* SAS / Python */
         --tag-green-bg:rgba(74,109,87,.25);
 
-        --tag-blue:#2b6cb0;                /* Quantitative */
+        --tag-blue:#2b6cb0;                   /* Quantitative / ML */
         --tag-blue-bg:rgba(43,108,176,.25);
       }
 
@@ -67,10 +67,10 @@
       .tags{ list-style:none; padding:0; margin:.5rem 0 0 0; display:flex; flex-wrap:wrap; gap:.6rem; }
       .tags .tag{
         font-size:.85rem;
-        padding:.45rem .85rem;            /* more padding so text isn’t on the edge */
+        padding:.45rem .85rem;            /* roomy so text isn’t on the edge */
         border:2px solid currentColor;
         border-radius:12px;               /* rectangular with rounded edges */
-        background:transparent;           /* set specific bg per tag below */
+        background:transparent;           /* tinted by each tag class */
         line-height:1;
         display:inline-block;
         letter-spacing:.01em;
@@ -168,10 +168,9 @@
 
           <div class="row">
             <div class="col-4 col-12-mobile">
-              <!-- UPDATED TILE -->
+              <!-- Project A: Mental Health -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p1">
-                  <!-- Absolute path per your request -->
                   <img src="https://sharondmcdermott.github.io/RuralUrbanMH.png" alt="Rural vs Urban Mental Health preview" />
                 </a>
                 <header>
@@ -184,14 +183,18 @@
                 </header>
               </article>
 
+              <!-- Project B: Real Estate Thesis -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p2">
-                  <img src="images/pic03.jpg" alt="Project 1 preview" />
+                  <!-- Your requested image -->
+                  <img src="Realtor.png" alt="Short-Term Real Estate Investment preview" />
                 </a>
                 <header>
-                  <h3>Project 1</h3>
+                  <h3>Short-Term Real Estate Investment (Bakersfield, CA)</h3>
                   <ul class="tags">
-                    <li class="tag">SQL</li><li class="tag">Tableau</li><li class="tag">Segmentation</li>
+                    <li class="tag tag--stat">Statistical Analysis</li>
+                    <li class="tag tag--sas">Python</li>
+                    <li class="tag tag--quant">Machine Learning</li>
                   </ul>
                 </header>
               </article>
@@ -327,6 +330,7 @@
     <script>
       // Structured content per project
       const PROJECTS = {
+        /* Mental Health study (kept from your paper) */
         p1: {
           title: "Rural vs Urban Mental Health",
           overview: `
@@ -425,7 +429,51 @@
           reflection: `
 <p>This study leverages recent, large-scale data and includes key controls. Results underscore the importance of considering urban/rural residency alongside sex, age, race, and healthcare access. Future work could broaden covariates (e.g., socioeconomic status, social support, environmental stressors), examine higher-order interactions, and compare multiple years (e.g., 2010, 2015, 2020, 2022) to inform targeted interventions such as telehealth and mobile mental health clinics in rural areas and environmental and community-focused approaches in urban areas, including funding and community-based programs to reduce stigma.</p>`
         },
-        p2:{ title:"Project 1", overview:"Short setup of the challenge and stakeholders.", did:"Approach and techniques (SQL, Tableau dashboards, segmentation).", outcome:"Decision enabled or KPI movement.", limitations:"Trade-offs, assumptions, or known gaps.", reflection:"What surprised you, or a next iteration." },
+
+        /* Real estate thesis (only paper info; EXAMPLE-style sections) */
+        p2: {
+          title: "Short-Term Real Estate Investment (Bakersfield, CA)",
+          overview: `
+<h3>Background</h3>
+<p>This thesis builds a data-driven framework to improve short-term real estate investment decisions in Bakersfield, CA. The work integrates predictive price modeling with geographic and seasonal clustering to answer three practical questions: <em>how much</em> to pay, <em>where</em> to invest, and <em>when</em> to buy.</p>
+
+<h3>Research Objectives</h3>
+<ul>
+  <li>Estimate fair market price at the property level.</li>
+  <li>Group ZIP codes into investment tiers to guide location choices.</li>
+  <li>Identify the most advantageous season for purchases.</li>
+</ul>
+<hr/>`,
+          did: `
+<h3>Planning &amp; Prep</h3>
+<p>Compiled MLS sales (2020–2024, single-family, built ≥ 2000) and joined auxiliary data (e.g., mortgage rates, school ratings, commute measures, proximity to amenities, public safety indicators). Created clean analytic datasets and feature sets for modeling and clustering.</p>
+
+<h3>Methodology</h3>
+<ul>
+  <li><strong>Pricing:</strong> Trained and compared multiple models (e.g., linear/regularized regression, gradient boosting, random forest, and a neural network) using cross-validation and a held-out test split.</li>
+  <li><strong>Location (“where”):</strong> Aggregated neighborhood indicators by ZIP and applied hierarchical clustering; assessed solutions with silhouette scores and PCA visuals.</li>
+  <li><strong>Timing (“when”):</strong> Clustered seasons using days-on-market, sale-to-list ratio, and sales activity to surface favorable buying windows.</li>
+</ul>
+<hr/>`,
+          outcome: `
+<h3>Selected Key Findings</h3>
+<ul>
+  <li><strong>How much:</strong> A neural network provided the best balance of accuracy and generalization among the tested models; influential drivers included square footage, location (ZIP), financing environment, lot size, and amenities.</li>
+  <li><strong>Where:</strong> ZIP codes separated into tiers, highlighting higher-potential areas in the northwest/southwest corridor versus more variable central/east ZIPs.</li>
+  <li><strong>When:</strong> Summer clustered as the most advantageous season overall, with nuances at the ZIP level.</li>
+</ul>
+<hr/>`,
+          limitations: `
+<ul>
+  <li>Findings are specific to Bakersfield and a short-term horizon.</li>
+  <li>Some inputs are proxies for broader socioeconomic factors.</li>
+  <li>Market conditions evolve; models and clusters require periodic updates.</li>
+</ul>
+<hr/>`,
+          reflection: `
+<p>Future work includes expanding macroeconomic features, enriching spatial detail, and operationalizing a lightweight data mart and dashboards for continuous monitoring and decision support.</p>`
+        },
+
         p3:{ title:"Project 2", overview:"Add your real details here.", did:"Methods/tools.", outcome:"Result.", limitations:"Limitations.", reflection:"Reflection." },
         p4:{ title:"Project 3", overview:"Add your real details here.", did:"Methods/tools.", outcome:"Result.", limitations:"Limitations.", reflection:"Reflection." },
         p5:{ title:"Gallery Item", overview:"Add your real details here.", did:"Methods/tools.", outcome:"Result.", limitations:"Limitations.", reflection:"Reflection." }
