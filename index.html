@@ -128,14 +128,21 @@
         color:#2b2b2b; max-height:88vh; overflow:auto;
       }
 
-      /* Close button — always visible */
+      /* Close button — solid #4a6d57 with white “×” */
       .modal__close{
         position:absolute; top:.5rem; right:.75rem;
-        font-size:2rem; font-weight:800; line-height:1;
-        color:#4a6d57!important; background:transparent!important; border:none!important;
-        cursor:pointer; z-index:5; opacity:1!important; display:inline-block;
+        width:40px; height:40px;
+        display:inline-flex; align-items:center; justify-content:center;
+        font-size:1.35rem; font-weight:800; line-height:1;
+        color:#fff!important;                      /* white “×” */
+        background:#4a6d57!important;              /* solid background */
+        border:none!important; border-radius:8px;
+        cursor:pointer; z-index:5; opacity:1!important;
+        transition:filter .15s ease, box-shadow .15s ease, transform .05s ease;
       }
-      .modal__close:hover, .modal__close:focus{ outline:2px solid #4a6d57; outline-offset:2px; }
+      .modal__close:hover{ filter:brightness(.95); }
+      .modal__close:active{ transform:scale(.98); }
+      .modal__close:focus{ outline:0; box-shadow:0 0 0 3px rgba(74,109,87,.35); }
 
       /* Modal typography */
       .modal__sections h4{ margin:1rem 0 .35rem; color:var(--accent); font-size:18px; }
@@ -271,7 +278,7 @@
               <!-- Consumer Attitudes EDA -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p6">
-                  <img src="images/pic09.jpg" alt="Consumer Attitudes EDA preview" />
+                  <img src="ConsumerAttitudes.png" alt="Consumer Attitudes EDA preview" />
                 </a>
                 <header>
                   <h3>Consumer Attitudes EDA</h3>
@@ -295,7 +302,7 @@
 
           <!-- Polaroid image, half size -->
           <a href="#" class="image featured">
-            <img src="Polaroid.png" alt="Polaroid of Sharon McDermott" />
+            <img src="Polo.png" alt="Polaroid of Sharon McDermott" />
           </a>
 
           <p>Hello! I'm Sharon McDermott, born and raised in Los Angeles—specifically, the intersection of Sepulveda and Venice, where the world began and ended outside a pink apartment building and its stubborn patch of grass.</p>
@@ -317,7 +324,7 @@
 
           <p>Contact me if you want someone who can dive into the chaos of numbers and come back with a story that actually means something—that’s my sweet spot. I’ll bring the data, the curiosity, and the kind of clarity that makes the insight impossible to forget.</p>
 
-          <form method="post" action="#">
+        <form method="post" action="#">
             <div class="row">
               <div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Name" /></div>
               <div class="col-6 col-12-mobile"><input type="email" name="email" placeholder="Email" /></div>
