@@ -22,13 +22,11 @@
         --accent:#4a6d57;
 
         /* Tag colors (shared across projects) */
-        --tag-orange:#f08a24;                 /* Statistical Analysis */
-        --tag-orange-bg:rgba(240,138,36,.25); /* 75% transparent look */
-
-        --tag-green:#4a6d57;                  /* SAS / Python */
+        --tag-orange:#f08a24;
+        --tag-orange-bg:rgba(240,138,36,.25);
+        --tag-green:#4a6d57;
         --tag-green-bg:rgba(74,109,87,.25);
-
-        --tag-blue:#2b6cb0;                   /* Quantitative / ML */
+        --tag-blue:#2b6cb0;
         --tag-blue-bg:rgba(43,108,176,.25);
       }
 
@@ -60,24 +58,46 @@
       /* About Me: left-align + tighter spacing */
       #about .container p{ text-align:left; margin:0 0 .9rem 0; line-height:1.75; font-size:1.05rem; }
 
-      /* CONTACT — smaller heading (Lato) + full-width lead text */
+      /* CONTACT — title smaller (Lato), lead text a bit larger and full width */
       #contact header h2{
         font-family:"Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
         font-weight:700;
-        font-size:1.6rem;      /* smaller than theme default */
+        font-size:1.6rem;      /* small title */
         letter-spacing:.02em;
         margin-bottom:.6rem;
       }
       #contact .container p{
         font-family:"Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
-        font-size:1rem;        /* slightly smaller body copy */
+        font-size:1.15rem;     /* a bit bigger than before */
         line-height:1.7;
         text-align:left;
-        width:100%;            /* span the full container width */
-        max-width:none;        /* remove previous 60ch cap */
-        margin:0 0 1.2rem 0;   /* no auto-centering */
+        width:100%;            /* span the whole section width */
+        max-width:none;        /* remove earlier 60ch limit */
+        margin:0 0 1.2rem 0;
         hyphens:auto;
         overflow-wrap:break-word;
+      }
+
+      /* CONTACT — make the input boxes smaller */
+      #contact form input[type="text"],
+      #contact form input[type="email"],
+      #contact form textarea{
+        font-family:"Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size:0.95rem;
+      }
+      #contact form input[type="text"],
+      #contact form input[type="email"]{
+        padding:.55rem .75rem;
+        height:42px;           /* shorter inputs */
+      }
+      #contact form textarea{
+        padding:.65rem .75rem;
+        min-height:120px;      /* shallower textarea */
+        resize:vertical;
+      }
+      #contact form input[type="submit"]{
+        padding:.65rem 1.1rem; /* slightly smaller button */
+        font-size:1rem;
       }
 
       /* Tag chips under project titles */
