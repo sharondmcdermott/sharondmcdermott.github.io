@@ -22,13 +22,11 @@
         --accent:#4a6d57;
 
         /* Tag colors (shared across projects) */
-        --tag-orange:#f08a24;                 /* Statistical Analysis */
-        --tag-orange-bg:rgba(240,138,36,.25); /* 75% transparent look */
-
-        --tag-green:#4a6d57;                  /* SAS / Python */
+        --tag-orange:#f08a24;
+        --tag-orange-bg:rgba(240,138,36,.25);
+        --tag-green:#4a6d57;
         --tag-green-bg:rgba(74,109,87,.25);
-
-        --tag-blue:#2b6cb0;                   /* Quantitative / ML */
+        --tag-blue:#2b6cb0;
         --tag-blue-bg:rgba(43,108,176,.25);
       }
 
@@ -64,23 +62,23 @@
       #contact header h2{
         font-family:"Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
         font-weight:700;
-        font-size:1.6rem;      /* small title */
+        font-size:1.6rem;
         letter-spacing:.02em;
         margin-bottom:.6rem;
       }
       #contact .container p{
         font-family:"Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
-        font-size:1.15rem;     /* a bit bigger than before */
+        font-size:1.15rem;     /* a bit bigger */
         line-height:1.7;
         text-align:left;
-        width:100%;            /* span the whole section width */
-        max-width:none;        /* remove earlier width cap */
+        width:100%;            /* span whole container */
+        max-width:none;        /* remove width cap */
         margin:0 0 1.2rem 0;
         hyphens:auto;
         overflow-wrap:break-word;
       }
 
-      /* CONTACT — make the input boxes smaller */
+      /* CONTACT — smaller input boxes */
       #contact form input[type="text"],
       #contact form input[type="email"],
       #contact form textarea{
@@ -90,15 +88,15 @@
       #contact form input[type="text"],
       #contact form input[type="email"]{
         padding:.55rem .75rem;
-        height:42px;           /* shorter inputs */
+        height:42px;
       }
       #contact form textarea{
         padding:.65rem .75rem;
-        min-height:120px;      /* shallower textarea */
+        min-height:120px;
         resize:vertical;
       }
       #contact form input[type="submit"]{
-        padding:.65rem 1.1rem; /* slightly smaller button */
+        padding:.65rem 1.1rem;
         font-size:1rem;
       }
 
@@ -139,11 +137,11 @@
       .modal__sections p, .modal__sections ul, .modal__sections li{ font-size:14px; line-height:1.7; }
       .modal__sections hr{ border:0; border-top:1px solid #e6e6e6; margin:1rem 0; }
 
-      /* ABOUT image — smaller, centered, responsive */
+      /* ABOUT image — half-size, centered, responsive */
       #about .image.featured{
         display:block;
         width:100%;
-        max-width:720px;       /* << Adjust to taste (e.g., 640px or 800px) */
+        max-width:360px;       /* HALF of the previous 720px */
         margin:0 auto 1.5rem;  /* centered + space under */
       }
       #about .image.featured img{
@@ -215,6 +213,7 @@
 
           <div class="row">
             <div class="col-4 col-12-mobile">
+              <!-- Project A -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p1">
                   <img src="https://sharondmcdermott.github.io/RuralUrbanMH.png" alt="Rural vs Urban Mental Health preview" />
@@ -229,6 +228,7 @@
                 </header>
               </article>
 
+              <!-- Project B -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p2">
                   <img src="Realtor.png" alt="Short-Term Real Estate Investment preview" />
@@ -245,6 +245,7 @@
             </div>
 
             <div class="col-4 col-12-mobile">
+              <!-- Placeholder -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p3">
                   <img src="images/pic04.jpg" alt="Project 2 preview" />
@@ -259,6 +260,7 @@
             </div>
 
             <div class="col-4 col-12-mobile">
+              <!-- Project C -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p6">
                   <img src="images/pic09.jpg" alt="Consumer Attitudes EDA preview" />
@@ -283,7 +285,7 @@
         <div class="container">
           <header><h2>About Me</h2></header>
 
-          <!-- Polaroid image, constrained to a nicer size -->
+          <!-- Polaroid image, now half-sized -->
           <a href="#" class="image featured">
             <img src="Polaroid.png" alt="Polaroid of Sharon McDermott" />
           </a>
@@ -365,9 +367,8 @@
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <!-- Modal logic + project data -->
+    <!-- Modal logic + project data (shortened content for brevity) -->
     <script>
-      // (Keep whatever project content you already had here)
       const PROJECTS = {
         p1:{ title:"Rural vs Urban Mental Health", overview:"", did:"", outcome:"", limitations:"", reflection:"" },
         p2:{ title:"Short-Term Real Estate Investment (Bakersfield, CA)", overview:"", did:"", outcome:"", limitations:"", reflection:"" },
