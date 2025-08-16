@@ -20,11 +20,15 @@
     <style>
       :root{
         --accent:#4a6d57;
-        --tag-orange:#f08a24;
-        --tag-orange-bg:rgba(240,138,36,.25);
-        --tag-green:#4a6d57;
+
+        /* Tag colors (shared across projects) */
+        --tag-orange:#f08a24;                 /* Statistical Analysis */
+        --tag-orange-bg:rgba(240,138,36,.25); /* 75% transparent look */
+
+        --tag-green:#4a6d57;                  /* SAS / Python */
         --tag-green-bg:rgba(74,109,87,.25);
-        --tag-blue:#2b6cb0;
+
+        --tag-blue:#2b6cb0;                   /* Quantitative / ML */
         --tag-blue-bg:rgba(43,108,176,.25);
       }
 
@@ -53,7 +57,7 @@
       /* Social icons hover tint */
       .icons a:hover{ color:var(--accent)!important; }
 
-      /* About Me: left-align + tighter spacing */
+      /* About Me copy */
       #about .container p{ text-align:left; margin:0 0 .9rem 0; line-height:1.75; font-size:1.05rem; }
 
       /* CONTACT — title smaller (Lato), lead text a bit larger and full width */
@@ -69,8 +73,8 @@
         font-size:1.15rem;     /* a bit bigger than before */
         line-height:1.7;
         text-align:left;
-        width:100%;
-        max-width:none;
+        width:100%;            /* span the whole section width */
+        max-width:none;        /* remove earlier width cap */
         margin:0 0 1.2rem 0;
         hyphens:auto;
         overflow-wrap:break-word;
@@ -94,7 +98,7 @@
         resize:vertical;
       }
       #contact form input[type="submit"]{
-        padding:.65rem 1.1rem;
+        padding:.65rem 1.1rem; /* slightly smaller button */
         font-size:1rem;
       }
 
@@ -123,8 +127,6 @@
         padding:1.5rem 1.75rem; border-radius:12px; box-shadow:0 10px 50px rgba(0,0,0,.3);
         color:#2b2b2b; max-height:88vh; overflow:auto;
       }
-
-      /* Close button — always visible */
       .modal__close{
         position:absolute; top:.5rem; right:.75rem;
         font-size:2rem; font-weight:800; line-height:1;
@@ -132,14 +134,24 @@
         cursor:pointer; z-index:5; opacity:1!important; display:inline-block;
       }
       .modal__close:hover, .modal__close:focus{ outline:2px solid #4a6d57; outline-offset:2px; }
-
-      /* Modal typography */
       .modal__sections h4{ margin:1rem 0 .35rem; color:var(--accent); font-size:18px; }
       .modal__sections h3{ font-size:18px; margin:.6rem 0 .25rem; }
-      .modal__sections p,
-      .modal__sections ul,
-      .modal__sections li{ font-size:14px; line-height:1.7; }
+      .modal__sections p, .modal__sections ul, .modal__sections li{ font-size:14px; line-height:1.7; }
       .modal__sections hr{ border:0; border-top:1px solid #e6e6e6; margin:1rem 0; }
+
+      /* ABOUT image — smaller, centered, responsive */
+      #about .image.featured{
+        display:block;
+        width:100%;
+        max-width:720px;       /* << Adjust to taste (e.g., 640px or 800px) */
+        margin:0 auto 1.5rem;  /* centered + space under */
+      }
+      #about .image.featured img{
+        display:block;
+        width:100%;
+        height:auto;
+        border-radius:6px;
+      }
     </style>
   </head>
   <body class="is-preload">
@@ -203,7 +215,6 @@
 
           <div class="row">
             <div class="col-4 col-12-mobile">
-              <!-- Project A: Mental Health -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p1">
                   <img src="https://sharondmcdermott.github.io/RuralUrbanMH.png" alt="Rural vs Urban Mental Health preview" />
@@ -218,7 +229,6 @@
                 </header>
               </article>
 
-              <!-- Project B: Real Estate Thesis -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p2">
                   <img src="Realtor.png" alt="Short-Term Real Estate Investment preview" />
@@ -235,7 +245,6 @@
             </div>
 
             <div class="col-4 col-12-mobile">
-              <!-- Keep a placeholder project if you want three columns -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p3">
                   <img src="images/pic04.jpg" alt="Project 2 preview" />
@@ -250,7 +259,6 @@
             </div>
 
             <div class="col-4 col-12-mobile">
-              <!-- Consumer Attitudes EDA -->
               <article class="item">
                 <a href="#" class="image fit project-link" data-project="p6">
                   <img src="images/pic09.jpg" alt="Consumer Attitudes EDA preview" />
@@ -275,7 +283,7 @@
         <div class="container">
           <header><h2>About Me</h2></header>
 
-          <!-- REPLACED image here -->
+          <!-- Polaroid image, constrained to a nicer size -->
           <a href="#" class="image featured">
             <img src="Polaroid.png" alt="Polaroid of Sharon McDermott" />
           </a>
@@ -302,7 +310,7 @@
           <form method="post" action="#">
             <div class="row">
               <div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Name" /></div>
-              <div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Email" /></div>
+              <div class="col-6 col-12-mobile"><input type="email" name="email" placeholder="Email" /></div>
               <div class="col-12">
                 <textarea name="message" placeholder="Message"></textarea>
               </div>
@@ -332,12 +340,16 @@
         <div class="modal__sections">
           <h4>Project Overview</h4>
           <div id="sec-overview"></div>
+
           <h4>What We Did</h4>
           <div id="sec-did"></div>
+
           <h4>Outcome</h4>
           <div id="sec-outcome"></div>
+
           <h4>Limitations</h4>
           <div id="sec-limitations"></div>
+
           <h4>Reflection</h4>
           <div id="sec-reflection"></div>
         </div>
@@ -355,11 +367,12 @@
 
     <!-- Modal logic + project data -->
     <script>
+      // (Keep whatever project content you already had here)
       const PROJECTS = {
-        p1:{title:"Rural vs Urban Mental Health",overview:`...`,did:`...`,outcome:`...`,limitations:`...`,reflection:`...`},
-        p2:{title:"Short-Term Real Estate Investment (Bakersfield, CA)",overview:`...`,did:`...`,outcome:`...`,limitations:`...`,reflection:`...`},
-        p3:{title:"Project 2",overview:"Add your real details here.",did:"Methods/tools.",outcome:"Result.",limitations:"Limitations.",reflection:"Reflection."},
-        p6:{title:"Consumer Attitudes EDA",overview:`...`,did:`...`,outcome:`...`,limitations:`...`,reflection:`...`}
+        p1:{ title:"Rural vs Urban Mental Health", overview:"", did:"", outcome:"", limitations:"", reflection:"" },
+        p2:{ title:"Short-Term Real Estate Investment (Bakersfield, CA)", overview:"", did:"", outcome:"", limitations:"", reflection:"" },
+        p3:{ title:"Project 2", overview:"", did:"", outcome:"", limitations:"", reflection:"" },
+        p6:{ title:"Consumer Attitudes EDA", overview:"", did:"", outcome:"", limitations:"", reflection:"" }
       };
 
       const modal = document.getElementById('project-modal');
