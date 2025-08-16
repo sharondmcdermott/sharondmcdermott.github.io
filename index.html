@@ -20,8 +20,6 @@
     <style>
       :root{
         --accent:#4a6d57;
-
-        /* Tag colors (shared across projects) */
         --tag-orange:#f08a24;
         --tag-orange-bg:rgba(240,138,36,.25);
         --tag-green:#4a6d57;
@@ -71,8 +69,8 @@
         font-size:1.15rem;     /* a bit bigger than before */
         line-height:1.7;
         text-align:left;
-        width:100%;            /* span the whole section width */
-        max-width:none;        /* remove earlier 60ch limit */
+        width:100%;
+        max-width:none;
         margin:0 0 1.2rem 0;
         hyphens:auto;
         overflow-wrap:break-word;
@@ -96,7 +94,7 @@
         resize:vertical;
       }
       #contact form input[type="submit"]{
-        padding:.65rem 1.1rem; /* slightly smaller button */
+        padding:.65rem 1.1rem;
         font-size:1rem;
       }
 
@@ -276,7 +274,11 @@
       <section id="about" class="three">
         <div class="container">
           <header><h2>About Me</h2></header>
-          <a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
+
+          <!-- REPLACED image here -->
+          <a href="#" class="image featured">
+            <img src="Polaroid.png" alt="Polaroid of Sharon McDermott" />
+          </a>
 
           <p>Hello! I'm Sharon McDermott, born and raised in Los Angeles—specifically, the intersection of Sepulveda and Venice, where the world began and ended outside a pink apartment building and its stubborn patch of grass.</p>
 
@@ -330,16 +332,12 @@
         <div class="modal__sections">
           <h4>Project Overview</h4>
           <div id="sec-overview"></div>
-
           <h4>What We Did</h4>
           <div id="sec-did"></div>
-
           <h4>Outcome</h4>
           <div id="sec-outcome"></div>
-
           <h4>Limitations</h4>
           <div id="sec-limitations"></div>
-
           <h4>Reflection</h4>
           <div id="sec-reflection"></div>
         </div>
@@ -357,259 +355,11 @@
 
     <!-- Modal logic + project data -->
     <script>
-      // Structured content per project
       const PROJECTS = {
-        /* Mental Health study */
-        p1: {
-          title: "Rural vs Urban Mental Health",
-          overview: `
-<h3>Background</h3>
-<p>Mental health issues are prevalent among adults in the United States and are influenced by environmental context, including whether individuals live in urban or rural areas. Rural residents can face isolation and limited access to healthcare, while urban residents may experience stressors such as overcrowding and noise but typically have greater access to services. Building on prior work and addressing gaps in representativeness and covariate control, this study examines the association between mental health and urban/rural status using recent, large-scale data.</p>
-
-<h3>Research Objectives</h3>
-<ul>
-  <li>Quantify the relationship between urban/rural status and mental health among U.S. adults.</li>
-  <li>Control for sex, age, race, and healthcare access.</li>
-  <li>Test for confounding and effect modification.</li>
-  <li>Evaluate model fit and discrimination.</li>
-</ul>
-<hr/>`,
-          did: `
-<h3>Planning &amp; Prep</h3>
-<p>We used the 2022 Behavioral Risk Factor Surveillance System (BRFSS) telephone survey. Of 445,132 respondents, 398,295 adults (89%) met inclusion criteria: age ≥18, residence in one of the 50 states, and complete data.</p>
-
-<p><strong>Variables</strong></p>
-<ul>
-  <li><strong>Outcome (MHSTAT):</strong> Poor mental health (≥14 “not good” days in the last 30) vs. good (0–13 days).</li>
-  <li><strong>Exposure (AREASTAT):</strong> Rural county vs. urban county.</li>
-  <li><strong>Controls:</strong> Sex (female/male), age (18–34; 35–54; 55+), race (White; Black; Other), healthcare access (any insurance vs. none).</li>
-</ul>
-<p>Analyses were conducted in SAS.</p>
-
-<h3>Methodology</h3>
-<ul>
-  <li>Descriptive statistics and Pearson chi-square tests of association:
-    <ul>
-      <li>Between control variables and urban/rural status.</li>
-      <li>Between exposure, controls, and mental health status.</li>
-    </ul>
-  </li>
-  <li>Logistic regression estimating adjusted odds ratios (AORs) and 95% CIs for poor mental health with AREASTAT and all controls.</li>
-  <li>Model assessment: AUC, rescaled R², and deviance goodness-of-fit.</li>
-  <li>Interaction testing; retained <strong>AREASTAT × RACE</strong> based on statistical significance.</li>
-  <li>Confounding checks using a 10% change-in-estimate rule.</li>
-</ul>
-<hr/>`,
-          outcome: `
-<h3>Selected Key Findings</h3>
-
-<p><strong>Sample characteristics (n = 398,295)</strong></p>
-<ul>
-  <li>Sex: 53.2% female, 46.8% male.</li>
-  <li>Age: 16.3% (18–34), 28.5% (35–54), 55.2% (55+).</li>
-  <li>Race: 76.3% White, 8.0% Black, 15.7% Other.</li>
-  <li>Healthcare access: 94.8% yes, 5.2% no.</li>
-  <li>Area: 87.3% urban (347,842), 12.7% rural (50,453).</li>
-</ul>
-
-<p><strong>Poor mental health prevalence</strong></p>
-<ul><li><strong>13.7%</strong> (54,722/398,295) reported poor mental health.</li></ul>
-
-<p><strong>Bivariate associations:</strong> Overall, chi-square tests showed statistically significant relationships across sex, age, race, healthcare access, and area status; poorer mental health was more common among females and younger adults, more frequent among those without healthcare access, and distributions differed by race and urban/rural residence.</p>
-<ul>
-  <li><strong>Sex:</strong> Females were overrepresented among those with poor mental health (61.8% vs. 53.2%; <em>p</em>&lt;0.0001).</li>
-  <li><strong>Age:</strong> 18–34 were overrepresented in the poor-MH group (26.7% vs. 16.3%); 55+ were underrepresented (39.8% vs. 55.2%; <em>p</em>&lt;0.0001).</li>
-  <li><strong>Race:</strong> Black and Other race groups were proportionally higher among those with poor mental health (<em>p</em>&lt;0.0001).</li>
-  <li><strong>Healthcare access:</strong> Those without access were proportionally higher among the poor-MH group (7.6% vs. 5.2%; <em>p</em>=0.0009).</li>
-  <li><strong>Area status:</strong> Urban/rural distribution differed by mental health status (<em>p</em>&lt;0.0001).</li>
-</ul>
-
-<p><strong>Adjusted odds:</strong> After adjustment, rural/urban residence was not a significant predictor on average, while sex and age showed strong associations, race showed small but significant differences, and lack of healthcare access corresponded to higher odds of poor mental health.</p>
-<ul>
-  <li><strong>Rural vs. Urban:</strong> AOR <strong>0.994</strong> (95% CI 0.967–1.023) — not statistically significant.</li>
-  <li><strong>Female vs. Male:</strong> AOR <strong>1.590</strong> (1.561–1.620).</li>
-  <li><strong>Age 35–54 vs. 18–34:</strong> AOR <strong>0.653</strong> (0.637–0.669).</li>
-  <li><strong>Age 55+ vs. 18–34:</strong> AOR <strong>0.372</strong> (0.364–0.382).</li>
-  <li><strong>Black vs. White:</strong> AOR <strong>1.042</strong> (1.009–1.077).</li>
-  <li><strong>Other vs. White:</strong> AOR <strong>0.957</strong> (0.933–0.981).</li>
-  <li><strong>Healthcare access:</strong> Those <strong>without</strong> access had higher odds of poor mental health (AOR <strong>1.315</strong>; 1.267–1.364).</li>
-</ul>
-
-<p><strong>Model performance and interactions:</strong> Overall discrimination was modest and model fit indicated value in accounting for interactions; race modified the association between area status and mental health, with direction and magnitude varying by racial group.</p>
-<ul>
-  <li><strong>AUC = 0.6203</strong>, <strong>rescaled R² = 0.0433</strong>.</li>
-  <li>Deviance goodness-of-fit <em>p</em>&lt;0.001 indicated improved fit with interactions.</li>
-  <li>Adding <strong>AREASTAT × RACE</strong> yielded statistically significant interactions and <strong>AUC = 0.6210</strong>.</li>
-  <li>With effect modification by race, the rural vs. urban odds ratio ranged <strong>0.916–1.109</strong>, with the average effect approximately <strong>1.1 times</strong> greater for rural residents.</li>
-</ul>
-
-<h3>Impact</h3>
-<p>Findings indicate that mental health outcomes differ across demographic and geographic contexts. Considering the variability by race and the observed differences by sex and age, strategies may be tailored to rural settings (addressing isolation and access constraints) and to urban contexts (mitigating environmental stressors), with attention to subgroups identified in the adjusted analyses.</p>
-<hr/>`,
-          limitations: `
-<ul>
-  <li>Self-reported BRFSS data may introduce bias.</li>
-  <li>Sample reduced from 445,132 to 398,295 (10.5%); some subgroups &lt;1,000.</li>
-  <li>Healthcare access measured only as presence of insurance, not level or quality.</li>
-  <li>Potential unmeasured confounding (e.g., socioeconomic status, preexisting conditions).</li>
-  <li>Modest discrimination and deviance test results indicate additional variables and model complexity may improve fit.</li>
-</ul>
-<hr/>`,
-          reflection: `
-<p>This study leverages recent, large-scale data and includes key controls. Results underscore the importance of considering urban/rural residency alongside sex, age, race, and healthcare access. Future work could broaden covariates (e.g., socioeconomic status, social support, environmental stressors), examine higher-order interactions, and compare multiple years (e.g., 2010, 2015, 2020, 2022) to inform targeted interventions such as telehealth and mobile mental health clinics in rural areas and environmental and community-focused approaches in urban areas, including funding and community-based programs to reduce stigma.</p>`
-        },
-
-        /* Real estate thesis */
-        p2: {
-          title: "Short-Term Real Estate Investment (Bakersfield, CA)",
-          overview: `
-<h3>Background</h3>
-<p>This thesis builds a data-driven framework to improve short-term real estate investment decisions in Bakersfield, CA. The work integrates predictive price modeling with geographic and seasonal clustering to answer three practical questions: <em>how much</em> to pay, <em>where</em> to invest, and <em>when</em> to buy.</p>
-
-<h3>Research Objectives</h3>
-<ul>
-  <li>Estimate fair market price at the property level.</li>
-  <li>Group ZIP codes into investment tiers to guide location choices.</li>
-  <li>Identify the most advantageous season for purchases.</li>
-</ul>
-<hr/>`,
-          did: `
-<h3>Planning &amp; Prep</h3>
-<p>Compiled MLS sales (2020–2024, single-family, built ≥ 2000) and joined auxiliary data (e.g., mortgage rates, school ratings, commute measures, proximity to amenities, public safety indicators). Created clean analytic datasets and feature sets for modeling and clustering.</p>
-
-<h3>Methodology</h3>
-<ul>
-  <li><strong>Pricing:</strong> Trained and compared multiple models (e.g., linear/regularized regression, gradient boosting, random forest, and a neural network) using cross-validation and a held-out test split.</li>
-  <li><strong>Location (“where”):</strong> Aggregated neighborhood indicators by ZIP and applied hierarchical clustering; assessed solutions with silhouette scores and PCA visuals.</li>
-  <li><strong>Timing (“when”):</strong> Clustered seasons using days-on-market, sale-to-list ratio, and sales activity to surface favorable buying windows.</li>
-</ul>
-<hr/>`,
-          outcome: `
-<h3>Selected Key Findings</h3>
-<ul>
-  <li><strong>How much:</strong> A neural network provided the best balance of accuracy and generalization among the tested models; influential drivers included square footage, location (ZIP), financing environment, lot size, and amenities.</li>
-  <li><strong>Where:</strong> ZIP codes separated into tiers, highlighting higher-potential areas in the northwest/southwest corridor versus more variable central/east ZIPs.</li>
-  <li><strong>When:</strong> Summer clustered as the most advantageous season overall, with nuances at the ZIP level.</li>
-</ul>
-<hr/>`,
-          limitations: `
-<ul>
-  <li>Findings are specific to Bakersfield and a short-term horizon.</li>
-  <li>Some inputs are proxies for broader socioeconomic factors.</li>
-  <li>Market conditions evolve; models and clusters require periodic updates.</li>
-</ul>
-<hr/>`,
-          reflection: `
-<p>Future work includes expanding macroeconomic features, enriching spatial detail, and operationalizing a lightweight data mart and dashboards for continuous monitoring and decision support.</p>`
-        },
-
-        /* Placeholder (optional) */
-        p3:{ title:"Project 2", overview:"Add your real details here.", did:"Methods/tools.", outcome:"Result.", limitations:"Limitations.", reflection:"Reflection." },
-
-        /* Consumer Attitudes EDA */
-        p6: {
-          title: "Consumer Attitudes EDA",
-          overview: `
-<h3>Background</h3>
-<p>This analysis conducts exploratory data analysis (EDA) on a consumer attitudes dataset to examine whether household income differs by sex. The data describe factors related to saving, borrowing, purchasing, and confidence in personal finances and national business conditions. Within that context, the study focuses on modeling income by sex and interpreting distributional patterns and inferential results suitable for decision-making.</p>
-
-<h3>Research Objectives</h3>
-<ul>
-  <li>Describe the dataset structure and variables relevant to income.</li>
-  <li>Recode sex for analysis and summarize distributions and group differences.</li>
-  <li>Visualize income by sex to assess shape and spread.</li>
-  <li>Estimate and interpret:
-    <ul>
-      <li>a baseline mean model for females, and</li>
-      <li>a linear model with sex as the predictor.</li>
-    </ul>
-  </li>
-  <li>Generate predictions and residuals; compute error metrics.</li>
-  <li>Test group differences with ANOVA and quantify proportional reduction in error (R&sup2;).</li>
-  <li>Conclude with an interpretation of findings.</li>
-</ul>
-<hr/>`,
-          did: `
-<h3>Planning &amp; Prep</h3>
-<p>Imported the dataset (<code>ACS.csv</code>) and created the analysis dataframe.</p>
-<p><strong>Dataset size:</strong> 1,000 observations and 9 variables:</p>
-<ul>
-  <li><strong>Sex</strong> (0 = Female, 1 = Male), <strong>Age</strong>, <strong>Married</strong>, <strong>Income</strong> (in thousands),</li>
-  <li><strong>HoursWk</strong>, <strong>Race</strong>, <strong>USCitizen</strong>, <strong>HealthInsurance</strong>, <strong>Language</strong>.</li>
-</ul>
-<p>Re-coded Sex to labeled values (Female/Male) for interpretation.</p>
-
-<h3>Methodology</h3>
-<ul>
-  <li><strong>Data structure &amp; tabulations:</strong> Verified variable types and ranges; produced a Race &times; Sex crosstab to profile sample composition.</li>
-  <li><strong>Descriptive statistics:</strong> Scaled Income to dollars (thousands &times; 1,000) and computed minimum, quartiles, median, maximum, mean, and standard deviation, as well as mean income by sex.</li>
-  <li><strong>Visualization:</strong> Created histograms of income by sex (combined and faceted) to assess right skew, mass at low values, and the upper tail.</li>
-  <li><strong>Models:</strong>
-    <ul>
-      <li>Intercept-only model for females (baseline mean).</li>
-      <li><code>Income ~ Sex</code> linear model using the labeled sex variable (SexL).</li>
-    </ul>
-  </li>
-  <li><strong>Diagnostics &amp; inference:</strong> Generated predicted values and residuals; calculated the sum of squared residuals; performed ANOVA on the sex model; reported R&sup2; as the proportional reduction in error.</li>
-</ul>
-<hr/>`,
-          outcome: `
-<h3>Selected Key Findings</h3>
-
-<p><strong>Data structure &amp; crosstab (n = 1,000)</strong></p>
-<p>Variables cover demographics and socioeconomics linked to income (sex, age, marital status, hours worked, race, citizenship, health insurance, language).</p>
-<p><strong>Race &times; Sex counts:</strong></p>
-<ul>
-  <li>Female: Asian = 30, Black = 60, Other = 33, White = 414</li>
-  <li>Male: Asian = 40, Black = 46, Other = 30, White = 347</li>
-</ul>
-
-<p><strong>Income (dollars)</strong></p>
-<ul>
-  <li>Min = 0, Q1 = 0, Median = 13,000, Q3 = 31,841.09, Max = 563,000</li>
-  <li>Mean = 22,785.13, SD = 39,141.88</li>
-  <li>Mean by sex: Female = 17,794.32; Male = 28,573.61</li>
-</ul>
-
-<p><strong>Distribution &amp; visuals</strong></p>
-<ul>
-  <li>Histograms show strong right skew, with many observations near zero and a long upper tail.</li>
-  <li>Female incomes are more concentrated at lower levels; male incomes extend further into higher brackets.</li>
-  <li>Most observations lie well below the upper axis limit, indicating a small number of high-income outliers.</li>
-</ul>
-
-<p><strong>Models &amp; predictions</strong></p>
-<ul>
-  <li>Female-only baseline (intercept): <strong>17,794.32</strong> — the sample mean for females.</li>
-  <li><code>Income ~ Sex</code> (SexL):
-    <ul>
-      <li>Intercept (Female): <strong>17,794.32</strong></li>
-      <li>Coefficient (Male vs Female): <strong>approximately +10,779</strong></li>
-    </ul>
-  </li>
-  <li>Predicted means align with the observed group means (Female ≈ 17,794.32; Male ≈ 28,573.61).</li>
-  <li>Sum of squared residuals ≈ <strong>1.501 &times; 10<sup>12</sup></strong>.</li>
-</ul>
-
-<p><strong>ANOVA &amp; proportional reduction in error</strong></p>
-<ul>
-  <li><strong>F = 19.2</strong>, <strong>p ≈ 1.302 &times; 10<sup>&minus;5</sup></strong> → income differs by sex in this sample.</li>
-  <li><strong>R&sup2; ≈ 0.0189</strong> → sex explains about 1.89% of the variance in income; statistically significant but a small share of overall variability.</li>
-</ul>
-
-<h3>Impact</h3>
-<p>The analysis identifies a statistically significant income difference by sex, with higher average income among males. At the same time, the small R&sup2; indicates that most income variability is not explained by sex alone, suggesting the need for broader models that incorporate additional determinants of income.</p>
-<hr/>`,
-          limitations: `
-<ul>
-  <li>The simple model (<code>Income ~ Sex</code>) does not adjust for other factors; potential confounding remains.</li>
-  <li>Right-skew with extreme values suggests influential outliers that can affect summaries.</li>
-  <li>Despite statistical significance, the explained variance is modest, limiting predictive utility for sex alone.</li>
-</ul>
-<hr/>`,
-          reflection: `
-<p>Results indicate a significant sex-based income difference in this dataset, yet income is multifactorial. Extending the analysis with additional variables—such as education, occupation, experience, and related socioeconomic factors—and exploring interactions or nonlinear forms would likely improve model fit and provide a fuller understanding of income determination.</p>`
-        }
+        p1:{title:"Rural vs Urban Mental Health",overview:`...`,did:`...`,outcome:`...`,limitations:`...`,reflection:`...`},
+        p2:{title:"Short-Term Real Estate Investment (Bakersfield, CA)",overview:`...`,did:`...`,outcome:`...`,limitations:`...`,reflection:`...`},
+        p3:{title:"Project 2",overview:"Add your real details here.",did:"Methods/tools.",outcome:"Result.",limitations:"Limitations.",reflection:"Reflection."},
+        p6:{title:"Consumer Attitudes EDA",overview:`...`,did:`...`,outcome:`...`,limitations:`...`,reflection:`...`}
       };
 
       const modal = document.getElementById('project-modal');
@@ -622,35 +372,26 @@
 
       function openModal(key){
         const p = PROJECTS[key]; if(!p) return;
-
         titleEl.textContent = p.title || "";
         secOverview.innerHTML = p.overview || "";
         secDid.innerHTML = p.did || "";
         secOutcome.innerHTML = p.outcome || "";
         secLimitations.innerHTML = p.limitations || "";
         secReflection.innerHTML = p.reflection || "";
-
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden','false');
         document.body.style.overflow = 'hidden';
         modal.querySelector('.modal__dialog').scrollTop = 0;
       }
-
       function closeModal(){
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden','true');
         document.body.style.overflow = '';
       }
-
-      // Open from tiles
       document.querySelectorAll('.project-link').forEach(a=>{
         a.addEventListener('click', e=>{ e.preventDefault(); openModal(a.dataset.project); });
       });
-
-      // Close on backdrop or X
       modal.addEventListener('click', e=>{ if(e.target.hasAttribute('data-close')) closeModal(); });
-
-      // Close on ESC
       document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeModal(); });
     </script>
   </body>
