@@ -60,8 +60,25 @@
       /* About Me: left-align + tighter spacing */
       #about .container p{ text-align:left; margin:0 0 .9rem 0; line-height:1.75; font-size:1.05rem; }
 
-      /* Contact: left-aligned text but centered block */
-      #contact .container p{ text-align:left; max-width:60ch; margin:0 auto 1.2rem; }
+      /* CONTACT — smaller heading (Lato) + full-width lead text */
+      #contact header h2{
+        font-family:"Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-weight:700;
+        font-size:1.6rem;      /* smaller than theme default */
+        letter-spacing:.02em;
+        margin-bottom:.6rem;
+      }
+      #contact .container p{
+        font-family:"Lato", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size:1rem;        /* slightly smaller body copy */
+        line-height:1.7;
+        text-align:left;
+        width:100%;            /* span the full container width */
+        max-width:none;        /* remove previous 60ch cap */
+        margin:0 0 1.2rem 0;   /* no auto-centering */
+        hyphens:auto;
+        overflow-wrap:break-word;
+      }
 
       /* Tag chips under project titles */
       .tags{ list-style:none; padding:0; margin:.5rem 0 0 0; display:flex; flex-wrap:wrap; gap:.6rem; }
